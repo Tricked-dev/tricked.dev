@@ -1,3 +1,9 @@
+<script context="module">
+	export const router = false;
+	export const hydrate = true;
+	export const prerender = true;
+</script>
+
 <script lang="ts">
 	import Discord from '@svicons/fa-brands/discord.svelte';
 	import Github from '@svicons/fa-brands/github.svelte';
@@ -5,6 +11,7 @@
 	import Social from '../components/social.svelte';
 	import DDG from '../components/ddg.svelte';
 	import ElementApp from '../components/element.svelte';
+	import '../app.css';
 	let tech = {
 		Rust: 90,
 		Actix: 100,
