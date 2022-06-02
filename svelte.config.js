@@ -6,6 +6,7 @@ const config = {
 	kit: {
 		inlineStyleThreshold: 1024 * 64 * 64,
 		adapter: adapter(),
+
 		vite: {
 		},
 	},

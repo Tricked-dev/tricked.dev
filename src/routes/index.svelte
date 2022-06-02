@@ -40,6 +40,8 @@
 		<div>
 			<h1 class="text-5xl font-bold">Tricked.pro</h1>
 			<p class="py-6">Welcome to my place in the internet</p>
+		</div>
+		<div>
 			<div class="card w-96 bg-neutral text-neutral-content py-4">
 				<div class="items-center text-center card-body">
 					<div class="flex gap-1">
@@ -59,7 +61,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="p-1" />
+			<div class="card w-96 bg-neutral text-neutral-content my-2">
+				<div class="card-body items-center text-center">
+					<h2 class="card-title">Sponsor me on Github</h2>
+					<a
+						href="https://github.com/sponsors/Tricked-dev"
+						class="link-accent btn btn-outline btn-primary">github.com/sponsors/Tricked-dev</a
+					>
+				</div>
+			</div>
 			<div class="card w-96 bg-neutral text-neutral-content">
 				<div class="card-body items-center text-center">
 					<h2 class="card-title">Skillz/Tools</h2>
