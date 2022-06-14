@@ -1,0 +1,67 @@
+{
+    "data": {
+        "user": {
+            "sponsorsListing": {
+                "id": "SL_kwDOBE_B084AAUmd",
+                "tiers": {
+                    "edges": [
+                        {
+                            "node": {
+                                "descriptionHTML": "<h3><g-emoji class=\"g-emoji\" alias=\"handshake\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f91d.png\">🤝</g-emoji> Friendly donation</h3>\n<ul>\n<li>get featured on my website</li>\n<li>shoutout on my twitter</li>\n<li>sponsor badge on your profile</li>\n</ul>",
+                                "name": "$5 a month",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-02-03T06:50:43Z",
+                                "isOneTime": false
+                            }
+                        },
+                        {
+                            "node": {
+                                "descriptionHTML": "<p>Simple website ill create a simple website in the style of my website (<a href=\"https://tricked.pro\">tricked.pro</a>) for you!</p>",
+                                "name": "$10 one time",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-06-14T16:36:30Z",
+                                "isOneTime": true
+                            }
+                        },
+                        {
+                            "node": {
+                                "descriptionHTML": "<h3><g-emoji class=\"g-emoji\" alias=\"fire\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f525.png\">🔥</g-emoji> Supporter</h3>\n<ul>\n<li>perks from previous tiers</li>\n<li>featured on a project's readme</li>\n<li>special role in my discord</li>\n<li>access to private a channel the discord</li>\n</ul>",
+                                "name": "$15 a month",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-06-02T09:41:52Z",
+                                "isOneTime": false
+                            }
+                        },
+                        {
+                            "node": {
+                                "descriptionHTML": "<h3><g-emoji class=\"g-emoji\" alias=\"sparkles\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/2728.png\">✨</g-emoji> Super Supporter</h3>\n<ul>\n<li>previous tiers</li>\n<li>access to <a href=\"http://ae.tricked.pro/\">Aethor</a> source code</li>\n<li>aethor premium</li>\n</ul>",
+                                "name": "$25 a month",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-02-03T06:50:43Z",
+                                "isOneTime": false
+                            }
+                        },
+                        {
+                            "node": {
+                                "descriptionHTML": "<p>I will create a small discord bot for you using Deno and Typescript. max 10 commands</p>",
+                                "name": "$25 one time",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-06-14T15:16:58Z",
+                                "isOneTime": true
+                            }
+                        },
+                        {
+                            "node": {
+                                "descriptionHTML": "<p>I will create a small project for you in <code>typescript</code>, <code>rust</code>, <code>kotlin</code> or <code>dart</code> contact me on discord beforehand tricked#3777</p>",
+                                "name": "$100 one time",
+                                "isCustomAmount": false,
+                                "createdAt": "2022-03-08T14:15:39Z",
+                                "isOneTime": true
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
