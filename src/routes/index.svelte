@@ -38,7 +38,23 @@
 	};
 	let display = false;
 	let mode: string | number = 2;
+	let text = 'Welcome to Tricked.pro this is a awesome site';
+	let slide = 5;
+	let title = '';
+	let length = 8;
+	setInterval(() => {
+		if (slide < text.length + 1) {
+			title = text.substring(slide - length, slide);
+			slide++;
+		} else {
+			slide = 5;
+		}
+	}, 300);
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 <div class="hero min-h-screen bg-base-200">
 	<div class="hero-content flex-col lg:flex-row gap-10">
