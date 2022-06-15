@@ -40,12 +40,16 @@
 	let mode: string | number = 2;
 	let text = 'Welcome to Tricked.pro this is a awesome site';
 	let slide = 5;
-	let title = '';
+	let title = text.substring(0, slide);
 	let length = 8;
 	setInterval(() => {
 		if (slide < text.length + 1) {
 			title = text.substring(slide - length, slide);
 			slide++;
+			if (title.endsWith(' ')) {
+				title = text.substring(slide - length, slide);
+				slide++;
+			}
 		} else {
 			slide = 5;
 		}
