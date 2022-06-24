@@ -12,30 +12,9 @@
 	import DDG from '../components/ddg.svelte';
 	import ElementApp from '../components/element.svelte';
 	import { default as tiers } from './_tiers.json';
+	import { tech } from './tech.json';
 	import '../app.css';
 
-	let tech = {
-		Rust: 90,
-		Actix: 90,
-		Typescript: 100,
-		Flutter: 70,
-		Dart: 70,
-		React: 70,
-		Deno: 100,
-		Node: 100,
-		Postgresql: 70,
-		MongoDB: 70,
-		Rest: 70,
-		Git: 70,
-		Docker: 50,
-		Linux: 90,
-		Kotlin: 50,
-		Grafana: 70,
-		CSS3: 70,
-		HTML5: 100,
-		Discord: 100,
-		VScode: 70
-	};
 	let display = false;
 	let mode: string | number = 2;
 	let text = 'Welcome to Tricked.pro this is a awesome site';
