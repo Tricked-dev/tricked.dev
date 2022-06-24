@@ -17,6 +17,7 @@ export let tech = {
   Grafana: 70,
   CSS3: 70,
   HTML5: 100,
+  Go: 70,
   Discord: 100,
   EdgeDB: 60,
   VScode: 70,
