@@ -11,30 +11,12 @@
 	import Social from '../components/social.svelte';
 	import DDG from '../components/ddg.svelte';
 	import ElementApp from '../components/element.svelte';
-	import { default as tiers } from './_tiers.json';
 	import { tech } from './tech.json';
 	import '../app.css';
-
-	let text = 'Welcome to Tricked.pro this is a awesome site';
-	let slide = 5;
-	let title = text.substring(0, slide);
-	let length = 8;
-	setInterval(() => {
-		if (slide < text.length + 1) {
-			title = text.substring(slide - length, slide);
-			slide++;
-			if (title.endsWith(' ')) {
-				title = text.substring(slide - length, slide);
-				slide++;
-			}
-		} else {
-			slide = 5;
-		}
-	}, 300);
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{'Tricked.pro'}</title>
 </svelte:head>
 
 <div class="hero min-h-screen bg-base-200">

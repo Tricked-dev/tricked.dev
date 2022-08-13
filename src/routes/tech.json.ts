@@ -15,12 +15,16 @@ export let tech = {
   Linux: 90,
   Kotlin: 50,
   Grafana: 70,
+  Prometheus: 70,
+  InfluxDB: 20,
   CSS3: 70,
   HTML5: 100,
   Go: 70,
   Discord: 100,
   EdgeDB: 60,
   VScode: 70,
+  Tailwind: 70,
+  Vite: 50,
 };
 export const get = () => {
   return {
