@@ -26,7 +26,7 @@ export let tech = {
   Tailwind: 70,
   Vite: 50,
 };
-export const get = () => {
+export const GET = () => {
   return {
     body: JSON.stringify(tech),
   };
