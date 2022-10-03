@@ -27,7 +27,5 @@ export let tech = {
   Vite: 50,
 };
 export const GET = () => {
-  return {
-    body: JSON.stringify(tech),
-  };
+  return new Response(JSON.stringify(tech));
 };
