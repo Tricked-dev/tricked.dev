@@ -21,6 +21,7 @@ export let tech = {
   HTML5: 100,
   Go: 70,
   Discord: 100,
+  "C#": 50,
   EdgeDB: 60,
   VScode: 70,
   Tailwind: 70,
