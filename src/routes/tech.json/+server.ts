@@ -16,16 +16,19 @@ export let tech = {
   Kotlin: 50,
   Grafana: 70,
   Prometheus: 70,
-  InfluxDB: 20,
+  InfluxDB: 30,
   CSS3: 70,
   HTML5: 100,
   Go: 70,
   Discord: 100,
-  "C#": 50,
+  "C#": 60,
   EdgeDB: 60,
   VScode: 70,
   Tailwind: 70,
-  Vite: 50,
+  Vite: 60,
+  ScyllaDB: 50,
+  EntityFramework: 60,
+  VisualStudio: 40,
 };
 export const GET = () => {
   return new Response(JSON.stringify(tech));
