@@ -1,0 +1,29 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<h1>👋 Hi!, I'm Tricked</h1>
+			<p>
+				Welcome to my Blog site!
+			</p>
+			<p>
+				Here you can find my latest posts.
+			</p>
+			<img class="mx-auto" src="https://github.com/Tricked-dev/Tricked-dev/blob/main/metrics.base.svg?raw=true">
+		</main>
+		<Footer />
+	</body>
+</html>
+
+
