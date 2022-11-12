@@ -57,3 +57,8 @@ And if you did everything correctly you should see `Successfully connected to ga
 
 Discord is trying to make people start to learn programming and rewarding people for doing so with a badge is a good way to do it.
 
+![](https://camo.githubusercontent.com/2396b5224a807ce6baf26214c3f219eb615ecba2923cfc3554740c7c889e9419/68747470733a2f2f692e696d6775722e636f6d2f7a366a7a7734432e706e67)
+
+## See also
+
+- [hackermondev's guide](https://github.com/hackermondev/discord-active-developer)
