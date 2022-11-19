@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "Rust Plugin system"
 description: "Compile time plugins in rust"
-pubDate: "Nov 12 2022"
+pubDate: "Nov 14 2022"
 # heroImage: "/blog/active-developer.png"
 ---
 
