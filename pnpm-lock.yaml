@@ -9,6 +9,7 @@ specifiers:
   daisyui: ^2.39.1
   prettier: ^2.7.1
   tailwindcss: ^3.2.4
+  vite-plugin-cloudflare-redirect: ^0.1.0
 
 dependencies:
   '@astrojs/mdx': 0.11.6
@@ -18,6 +19,7 @@ dependencies:
   astro: 1.6.7
   daisyui: 2.39.1
   tailwindcss: 3.2.4
+  vite-plugin-cloudflare-redirect: 0.1.0
 
 devDependencies:
   prettier: 2.7.1
@@ -1072,6 +1074,10 @@ packages:
   /clone/1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+    dev: false
+
+  /cloudflare-redirect-parser/0.1.0:
+    resolution: {integrity: sha512-M4pDIvjLX4wuC9SX1CaQ3ClLIgNOa37gaeL4c31cCJpJ2b+GlaXybnB14iUTtuGbhmS+Eu6JGLoWbiJ2PW8g+A==}
     dev: false
 
   /color-convert/1.9.3:
@@ -4036,6 +4042,17 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.2
+    dev: false
+
+  /vite-plugin-cloudflare-redirect/0.1.0:
+    resolution: {integrity: sha512-d3PzoOfOyV0n3ZA6nK1xvD1cFGluD8vHpkxHpRIUu1ikIGnihAoc7nkZ+l4nv9dCXgkGP3DdlozExGcResx87A==}
+    peerDependencies:
+      vite: ^3.0.0
+    peerDependenciesMeta:
+      vite:
+        optional: true
+    dependencies:
+      cloudflare-redirect-parser: 0.1.0
     dev: false
 
   /vite/3.2.3:

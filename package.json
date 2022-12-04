@@ -17,7 +17,8 @@
     "@astrojs/tailwind": "^2.1.2",
     "astro": "^1.6.7",
     "daisyui": "^2.39.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "vite-plugin-cloudflare-redirect": "^0.1.0"
   },
   "devDependencies": {
     "prettier": "^2.7.1"

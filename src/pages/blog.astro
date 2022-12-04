@@ -47,7 +47,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 										day: 'numeric',
 									})}
 								</time>
-								<a href={post.url}>{post.frontmatter.title}</a>
+								<a href={post.url} class="link link-hover">{post.frontmatter.title}</a>
 							</li>
 						))
 					}
