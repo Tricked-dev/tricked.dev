@@ -6,7 +6,7 @@ import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://tricked.pro",
+  site: "https://tricked.dev",
   integrations: [mdx(), sitemap(), tailwind()],
   vite: {
     plugins: [cloudflareRedirect()],
