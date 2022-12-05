@@ -1,4 +1,5 @@
 const themes = require("daisyui/src/colors/themes");
+const daisyui = require("daisyui");
 
 const theme = {
   ...themes["[data-theme=forest]"],
@@ -25,5 +26,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [require("daisyui")],
+  plugins: [daisyui],
 };
