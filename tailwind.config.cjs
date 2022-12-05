@@ -2,11 +2,12 @@ const themes = require("daisyui/src/colors/themes");
 const daisyui = require("daisyui");
 
 const theme = {
+  ...themes["[data-theme=business]"],
   ...themes["[data-theme=forest]"],
   neutral: themes["[data-theme=black]"].neutral,
   accent: themes["[data-theme=black]"].accent,
-  secondary: "#6593ed",
   ["base-100"]: themes["[data-theme=black]"]["base-100"],
+  secondary: "#6593ed",
 };
 
 /** @type {import('tailwindcss').Config} */
