@@ -16,3 +16,7 @@ Ungoogled-chromium is a version of the Chromium open-source web browser that has
 ## Is it more private
 
 It is difficult to say whether ungoogled-chromium is more privacy-focused than Firefox, as both browsers have their own unique privacy features and settings. In general, both Firefox and ungoogled-chromium are considered to be more privacy-focused than Chrome, as they both have features that can help protect users' privacy while browsing the web. However, Firefox has a long history of prioritizing privacy and has a number of built-in features that can help users protect their data, such as tracking protection and private browsing mode. ungoogled-chromium, on the other hand, focuses more on removing features that transmit data to Google, rather than providing additional privacy features. Ultimately, the best browser for you will depend on your specific privacy needs and preferences.
+
+---
+
+This article was mostly made by chatgpt but mostly reflects my opinions
