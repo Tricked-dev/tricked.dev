@@ -8,6 +8,7 @@ const theme = {
   accent: themes["[data-theme=black]"].accent,
   ["base-100"]: themes["[data-theme=black]"]["base-100"],
   secondary: "#6593ed",
+  "--rounded-btn": "0.4rem",
 };
 
 /** @type {import('tailwindcss').Config} */

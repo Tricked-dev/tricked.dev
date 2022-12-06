@@ -10,6 +10,7 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 <a
   href={href}
   class:list={[className, "link-hover", { active: isActive }]}
+  rel="prefetch"
   {...props}
 >
   <slot />

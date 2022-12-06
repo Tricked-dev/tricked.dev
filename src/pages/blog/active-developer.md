@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "How i got the active developer badge"
 description: "Post how i got the active developer badge on Discord"
 pubDate: "Nov 12 2022"
-heroImage: "/blog/active-developer.png"
+heroImage: "/img/blog/active-developer.png"
 ---
 
 I got the active developer badge by making the bot [Aethor](https://aethor.xyz/), you can get the badge by having a bot that ran a slash command in the past 30 days and claiming it on the [Discord Developer Portal](https://discord.com/developers/active-developer).
