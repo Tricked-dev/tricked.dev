@@ -5,12 +5,19 @@ const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+const blacklist = ["discord", "twitter", "sponsor", "github"];
+if (
+  typeof href == "string" &&
+  !href.startsWith("https://") &&
+  !blacklist.some((x) => href.includes(x))
+) {
+  props.rel = "prefetch";
+}
 ---
 
 <a
   href={href}
   class:list={[className, "link-hover", { active: isActive }]}
-  rel="prefetch"
   {...props}
 >
   <slot />
