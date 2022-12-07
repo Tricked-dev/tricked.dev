@@ -10,6 +10,7 @@
 
 /atom /rss.xml
 /atom.xml /rss.xml
+/sitemap.xml /sitemap-0.xml
 
 /aethor https://aethor.xyz
 /ascella https://ascella.host

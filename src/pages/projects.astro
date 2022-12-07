@@ -1,0 +1,37 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import { getData } from "./projects.json";
+const projects = await getData();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={`${SITE_TITLE}`} />
+    <main>
+      {
+        projects.map(
+          (project: {
+            url: string | URL | null | undefined;
+            name: unknown;
+            description: unknown;
+          }) => (
+            <article>
+              <h2>
+                <a href={project.url}>{project.name}</a>
+              </h2>
+              <p>{project.description}</p>
+            </article>
+          )
+        )
+      }
+    </main>
+    <Footer />
+  </body>
+</html>
