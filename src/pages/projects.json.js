@@ -1,36 +1,21 @@
 const projects = [
-  {
-    repo: "tricked-dev/diplo"
-  },
+  { repo: "tricked-dev/diplo" },
   {
     repo: "nowrom/devices",
     name: "Nowrom",
     description: "A cool project"
   },
-  {
-    repo: "tricked-dev/lowestbins"
-  },
-  {
-    repo: "Tricked-dev/argoninstaller"
-  },
-  {
-    repo: "tricked-dev/darkvault"
-  },
-  {
-    repo: "Tricked-dev/vwmetrics"
-  },
-  {
-    repo: "Tricked-dev/xsteps"
-  },
-  {
-    repo: "dg-continuum/dws"
-  },
-  {
-    repo: "octocat-rs/octocat-rs"
-  },
-  {
-    repo: "Tricked-dev/tricked-bot"
-  }
+  { repo: "tricked-dev/lowestbins" },
+  { repo: "Tricked-dev/argoninstaller" },
+  { repo: "tricked-dev/darkvault" },
+  { repo: "Tricked-dev/vwmetrics" },
+  { repo: "Tricked-dev/xsteps" },
+  { repo: "dg-continuum/dws" },
+  { repo: "octocat-rs/octocat-rs" },
+  { repo: "Tricked-dev/tricked-bot" },
+  { repo: "Tricked-dev/vwmetrics" },
+  { repo: "Tricked-dev/bun-docs" },
+  { repo: "Tricked-dev/bun-modules" },
 ]
 
 let query = `
