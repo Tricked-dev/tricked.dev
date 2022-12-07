@@ -6,8 +6,8 @@ const theme = {
   ...themes["[data-theme=forest]"],
   neutral: themes["[data-theme=black]"].neutral,
   accent: themes["[data-theme=black]"].accent,
+  secondary: themes["[data-theme=acid]"].secondary,
   ["base-100"]: themes["[data-theme=black]"]["base-100"],
-  secondary: "#6593ed",
   "--rounded-btn": "0.4rem",
 };
 
