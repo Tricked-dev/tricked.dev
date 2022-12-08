@@ -6,16 +6,6 @@ pubDate: "Nov 19 2022"
 # heroImage: "/blog/active-developer.png"
 ---
 
-- [Why are github pages bad?](#why-are-github-pages-bad)
-  - [You have to use Github actions to deploy the website](#you-have-to-use-github-actions-to-deploy-the-website)
-  - [Custom domains are a pain to setup](#custom-domains-are-a-pain-to-setup)
-  - [No SSR support](#no-ssr-support)
-  - [No custom headers](#no-custom-headers)
-  - [No custom redirects](#no-custom-redirects)
-- [Alternatives](#alternatives)
-  - [Cloudflare pages](#cloudflare-pages)
-  - [Vercel](#vercel)
-
 ## Why are github pages bad?
 
 ### You have to use Github actions to deploy the website
