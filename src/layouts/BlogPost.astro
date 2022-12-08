@@ -10,11 +10,12 @@ export interface Props {
     pubDate?: string;
     updatedDate?: string;
     heroImage?: string;
+    about: boolean;
   };
 }
 
 const {
-  content: { title, description, pubDate, updatedDate, heroImage },
+  content: { title, description, pubDate, updatedDate, heroImage, about },
 } = Astro.props;
 ---
 
@@ -49,32 +50,39 @@ const {
         }
         <slot />
       </article>
-
-      <script
-        src="https://giscus.app/client.js"
-        data-repo="Tricked-dev/tricked.dev"
-        data-repo-id="R_kgDOHYCdHg"
-        data-category="Blogs"
-        data-category-id="DIC_kwDOHYCdHs4CS7Mv"
-        data-mapping="title"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async
-      ></script>
-      <center>
-        If you liked this article consider supporting my work!
-        <div class="pt-2">
-          <a href="/sponsor" class="no-underline btn btn-secondary">
-            Donate on Github
-          </a>
-        </div>
-      </center>
+      {
+        !about && (
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="Tricked-dev/tricked.dev"
+            data-repo-id="R_kgDOHYCdHg"
+            data-category="Blogs"
+            data-category-id="DIC_kwDOHYCdHs4CS7Mv"
+            data-mapping="title"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="dark"
+            data-lang="en"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+          />
+        )
+      }
+      {
+        !about && (
+          <center>
+            If you liked this article consider supporting my work!
+            <div class="pt-2">
+              <a href="/sponsor" class="no-underline btn btn-secondary">
+                Donate on Github
+              </a>
+            </div>
+          </center>
+        )
+      }
     </main>
     <Footer />
   </body>
