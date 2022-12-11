@@ -1,7 +1,7 @@
 const themes = require("daisyui/src/colors/themes");
 const daisyui = require("daisyui");
 
-const theme = {
+const basic = {
   ...themes["[data-theme=business]"],
   ...themes["[data-theme=forest]"],
   neutral: themes["[data-theme=black]"].neutral,
@@ -11,6 +11,20 @@ const theme = {
   ["base-200"]: themes["[data-theme=halloween]"]["base-200"],
   ["base-300"]: themes["[data-theme=black]"]["base-300"],
   "--rounded-btn": "0.4rem",
+};
+
+const black = {
+  ...basic,
+  ["base-100"]: themes["[data-theme=black]"]["base-100"],
+  ["base-200"]: themes["[data-theme=black]"]["base-200"],
+  ["base-300"]: themes["[data-theme=black]"]["base-300"],
+};
+
+const light = {
+  ...basic,
+  ["base-100"]: themes["[data-theme=light]"]["base-100"],
+  ["base-200"]: themes["[data-theme=light]"]["base-200"],
+  ["base-300"]: themes["[data-theme=light]"]["base-300"],
 };
 
 /** @type {import('tailwindcss').Config} */
@@ -27,7 +41,13 @@ module.exports = {
     logs: false,
     themes: [
       {
-        forest: theme,
+        basic,
+      },
+      {
+        black,
+      },
+      {
+        light,
       },
     ],
   },
