@@ -39,7 +39,7 @@ const projects = [
     timestart: "01-07-2020",
     image: url + "assets/2023-06-03_23-40-45.png",
     description:
-      "A discord bot made to manage suggestions in discord servers used by over 350 servers",
+      "A discord bot made to manage suggestions in discord servers used by over 450 servers",
     bits: 0b111,
   },
   {
