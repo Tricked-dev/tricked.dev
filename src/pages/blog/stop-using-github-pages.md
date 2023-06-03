@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Stop using Github pages"
 description: "Github pages has the worst user experience of any website hosting out there. I will show you why and what alternatives you can consider"
 pubDate: "Nov 19 2022"
-# heroImage: "/blog/active-developer.png"
+heroImage: "/assets/1903255995_A paper plane flying over a city  _xl-beta-v2-2-2.png"
 ---
 
 ## Why are github pages bad?

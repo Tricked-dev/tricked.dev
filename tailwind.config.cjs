@@ -1,5 +1,5 @@
-const themes = require("daisyui/src/colors/themes");
 const daisyui = require("daisyui");
+const themes = require("daisyui/src/theming/themes");
 
 const basic = {
   ...themes["[data-theme=business]"],

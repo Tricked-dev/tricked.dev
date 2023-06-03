@@ -3,7 +3,7 @@ layout: "../layouts/BlogPost.astro"
 title: "About Me"
 description: "Information about me!"
 updatedDate: "December 4 2022"
-heroImage: "/placeholder-about.jpg"
+heroImage: "/assets/4122343113_A white husky looking out of a bedroom window, atm_xl-beta-v2-2-2.png"
 about: true
 ---
 

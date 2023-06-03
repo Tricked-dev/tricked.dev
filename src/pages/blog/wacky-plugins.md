@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Rust Plugin system"
 description: "Compile time plugins in rust"
 pubDate: "Nov 14 2022"
-# heroImage: "/blog/active-developer.png"
+heroImage: "/assets/1821896440_gears rotating in a big room with steam punk machi_xl-beta-v2-2-2.png"
 ---
 
 Today i created a dynamic plugin system in rust. It is a very simple system that allows you to load plugins at compile time. [Wacky Plugins](https://github.com/Tricked-dev/wacky-plugins)

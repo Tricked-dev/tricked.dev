@@ -1,5 +1,9 @@
 ---
-export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+export interface Props {
+  href: string;
+  class?: string;
+  target?: string;
+}
 
 const { href, class: className, ...props } = Astro.props;
 
@@ -11,6 +15,7 @@ if (
   !href.startsWith("https://") &&
   !blacklist.some((x) => href.includes(x))
 ) {
+  //@ts-ignore -
   props.rel = "prefetch";
 }
 ---

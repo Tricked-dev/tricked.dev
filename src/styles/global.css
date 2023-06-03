@@ -8,12 +8,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --width: 65ch;
+}
+
 body {
   @apply bg-base-100 text-base-content;
   font-family: Verdana, sans-serif;
   margin: auto;
   padding: 20px;
-  max-width: 65ch;
+  max-width: var(--width);
   text-align: left;
   word-wrap: break-word;
   overflow-wrap: break-word;
