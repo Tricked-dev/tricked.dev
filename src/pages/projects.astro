@@ -62,6 +62,7 @@ const projects = await getData();
                     {project.name}
                   </a>
                   {project.stargazerCount != undefined &&
+                    project.stargazerCount != 0 &&
                     ` (${project.stargazerCount} stars)`}
                 </h2>
                 <span>
