@@ -28,6 +28,32 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
           <img src="/metrics" alt="Cool metrics lol" />
         </a>
       </div>
+      <div class="text-center">
+        <span>Currently playing music</span>
+        <img
+          loading="lazy"
+          id="currently-playing"
+          src="https://music.tricked.dev/.svg"
+          alt="Currently playing music"
+        />
+        <script async>
+          setInterval(() => {
+            const img = document.getElementById("currently-playing");
+            const rect = img.getBoundingClientRect();
+            const visible =
+              rect.top >= 0 &&
+              rect.left >= 0 &&
+              rect.bottom <=
+                (window.innerHeight || document.documentElement.clientHeight) &&
+              rect.right <=
+                (window.innerWidth || document.documentElement.clientWidth);
+            if (!visible) return;
+            console.log("called!");
+            img.src =
+              "https://music.tricked.dev/.svg?t=" + new Date().getTime();
+          }, 5000);
+        </script>
+      </div>
     </main>
     <Footer />
   </body>
