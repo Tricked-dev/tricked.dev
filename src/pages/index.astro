@@ -37,8 +37,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
           alt="Currently playing music"
         />
         <script async>
+          const img = document.getElementById("currently-playing");
+          img.src = "https://music.tricked.dev/.svg?t=" + new Date().getTime();
           setInterval(() => {
-            const img = document.getElementById("currently-playing");
             const rect = img.getBoundingClientRect();
             const visible =
               rect.top >= 0 &&
