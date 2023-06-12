@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import tech from "../../public/tech.json";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 ---
 
@@ -22,6 +23,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
         Here, you can find my latest blog posts where I share updates on my
         work, discuss the latest industry trends, and share tips and insights on
         programming and technology. Thank you for visiting!
+      </p>
+      <p
+        class="text-sm text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary"
+      >
+        {
+          Object.keys(tech)
+            .flatMap((x) => [<span>{x}</span>, ", "])
+            .slice(0, -1)
+        }
       </p>
       <div class="text-center">
         <a target="_blank" href="/sponsor">

@@ -48,6 +48,7 @@ const projects = [
     timestart: "01-06-2023",
     description: "Find out if Plants vs. Zombies GW2 is online",
   },
+  { repo: "Tricked-dev/musicembeds" },
   { repo: "Tricked-dev/Speech-To-Text-Bot" },
   { repo: "Tricked-dev/argoninstaller" },
   { repo: "tricked-dev/darkvault" },
@@ -65,12 +66,11 @@ const projects = [
 let query = `
 {
 ${projects
-  .filter((x) => x.repo)
-  .map(
-    (x) =>
-      `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${
-        x.repo?.split("/")[0]
-      }", name: "${x.repo?.split("/")[1]}") {
+    .filter((x) => x.repo)
+    .map(
+      (x) =>
+        `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${x.repo?.split("/")[0]
+        }", name: "${x.repo?.split("/")[1]}") {
     description
     name
     stargazerCount
@@ -89,8 +89,8 @@ ${projects
     }
   }
 `
-  )
-  .join("")}}
+    )
+    .join("")}}
 `;
 
 let result: any[];
