@@ -1,12 +1,13 @@
 {
   "Typescript": 100,
   "NodeJs": 100,
-  "ExpressJS": 100,
+  "React Native": 80,
   "Redis": 70,
-  "GraphQL": 40,
   "Cloudflare Workers": 100,
-  "MongoDB": 80,
   "Linux": 80,
+  "Go": 70,
+  "Postgresql": 70,
+  "Flutter": 70,
   "Docker": 50,
   "Rust": 80
 }
