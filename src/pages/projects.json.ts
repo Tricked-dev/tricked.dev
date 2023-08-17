@@ -1,4 +1,5 @@
 const url = import.meta.env.DEV ? "/" : "https://tricked.dev/";
+
 const projects = [
   {
     repo: "tricked-dev/betternexus",
@@ -15,6 +16,12 @@ const projects = [
       url +
       "assets/1910807468_A image of a hyper efficient trading section of a _xl-beta-v2-2-2.png",
     bits: 0b111,
+  },
+  {
+    repo: "tricked-dev/stardew-mod-manager"
+  },
+  {
+    repo: "BlazeWatch/carbon"
   },
   {
     repo: "nowrom/devices",

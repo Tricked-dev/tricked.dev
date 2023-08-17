@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 :root {
-  --width: 65ch;
+  --width: 80ch;
 }
 
 body {
