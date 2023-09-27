@@ -12,32 +12,45 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://tricked.dev",
-  integrations: [mdx({
-    extendPlugins: false
-  }), sitemap({
-    changefreq: "weekly"
-  }), tailwind(), prefetch()],
+  integrations: [
+    mdx({
+      extendPlugins: false,
+    }),
+    sitemap({
+      changefreq: "weekly",
+    }),
+    tailwind(),
+    prefetch(),
+  ],
   experimental: {},
   output: "hybrid",
   adapter: cloudflare(),
   markdown: {
-    remarkPlugins: [[remarkToc, {
-      tight: true,
-      ordered: true
-    }]],
-    rehypePlugins: [[rehypeSlug, {}], [rehypeToc, {
-      headings: ["h1", "h2", "h3"],
-      cssClasses: {
-        toc: "bg-base-300 py-2",
-        link: "link link-hover"
-      }
-    }]]
-  },
-  experimental: {
-    viewTransitions: true
+    remarkPlugins: [
+      [
+        remarkToc,
+        {
+          tight: true,
+          ordered: true,
+        },
+      ],
+    ],
+    rehypePlugins: [
+      [rehypeSlug, {}],
+      [
+        rehypeToc,
+        {
+          headings: ["h1", "h2", "h3"],
+          cssClasses: {
+            toc: "bg-base-300 py-2",
+            link: "link link-hover",
+          },
+        },
+      ],
+    ],
   },
   trailingSlash: "ignore",
   vite: {
     plugins: [cloudflareRedirect()],
-  }
+  },
 });
