@@ -6,21 +6,25 @@ pubDate: "Sep 27 2023"
 heroImage: "/assets/687435_Thermal heat printer tspl _xl-1024-v1-0.png"
 ---
 
-TSPL (Thermal Printer Control Language) is a scripting language used by TSC thermal printers. It's essential for creating labels, barcodes, and more. While tools exist for Windows, Linux users might find it challenging to work with TSC printers directly. This article presents a Rust-based solution for this.
+TSPL, or Thermal Printer Control Language, is the scripting protocol behind TSC thermal printers. It's indispensable for generating labels, barcodes, and more. While Windows users have a variety of tools at their disposal, those on Linux often face hurdles when trying to communicate directly with TSC printers. This article aims to bridge that gap with a Rust-based solution.
 
-### Prerequisites
+## Prerequisites
 
-- Basic knowledge of Rust.
-- Rust and Cargo installed on your machine.
-- A TSC printer connected to your Linux machine.
+1. A foundational understanding of Rust.
+2. Rust and Cargo properly set up on your machine.
+3. A TSC printer connected to your Linux setup.
 
-After doing a couple hours of research i couldnt find anything about how to send TSPL to a printer on linux theres diagtool for Windows but it doesnt work via wine.
+During my initial research phase, I discovered a conspicuous absence of Linux-native solutions for sending TSPL to a printer. There is 'diagtool' for Windows, but it's incompatible with Wine.
 
-So after doing a bit of research on how `rusb` the libusb library for rust worked it looked as simple as sending the tspl data to the printer and it was
+After delving deeper into the workings of `rusb`, Rust's libusb library, I realized the process was as straightforward as transmitting the TSPL data directly to the printer.
+
+First, add the necessary dependencies:
 
 ```
 cargo add color_eyre rusb
 ```
+
+Then, implement the communication:
 
 ```rs
 static HANDLE: OnceCell<DeviceHandle<GlobalContext>> = OnceCell::new();
@@ -52,11 +56,13 @@ pub fn write_binary(data: &[u8]) -> color_eyre::Result<()> {
 
 This is all the code needed to send tspl to a TSC printer on linux, this code detects all devices made by TSC (`0x1203`) and send the data you want to send to it for example
 
+Executing the code above will enable you to send TSPL instructions, like:
+
 ```rs
 write_binary("SOUND 5, 500\n".as_bytes())
 ```
 
-i also made a little helper function that automatically applies the `\n` for you
+For added convenience, I've also crafted a helper function to ensure every TSPL command is newline-terminated:
 
 ```rs
 pub fn write_text(tspl_commands: String) -> color_eyre::Result<()> {
@@ -73,6 +79,6 @@ pub fn write_text(tspl_commands: String) -> color_eyre::Result<()> {
 
 But thats it all you need to send tspl to a printer using linux
 
-## Conclusion
+## Wrapping Up
 
 Working with TSC printers on Linux might seem daunting due to the lack of native tools. However, with some Rust and the `rusb` library, you can easily communicate with these printers using TSPL. Whether you're printing labels, barcodes, or any other tasks, this method ensures seamless integration on a Linux environment.
