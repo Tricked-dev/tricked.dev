@@ -5,6 +5,12 @@ description: "implementing console.log in rust with wasm and no third party libr
 pubDate: "Nov 3 2023"
 ---
 
+## Why
+
+I wanted to learn more about wasm and how you can implement things with rust and wasm without relying on a third party library bloating my code and making larger binaries, so i researched on ways to use wasm to make small applications and realised soon that even implementing `console.log` is not that straight forward
+
+## How
+
 Since you sadly can't directly send strings back to javascript we instead have to use pointers and uint8arrays to send data back to javascript,
 
 ```rs

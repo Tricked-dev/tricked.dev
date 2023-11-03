@@ -37,16 +37,6 @@ export default defineConfig({
     ],
     rehypePlugins: [
       [rehypeSlug, {}],
-      [
-        rehypeToc,
-        {
-          headings: ["h1", "h2", "h3"],
-          cssClasses: {
-            toc: "bg-base-300 py-2",
-            link: "link link-hover",
-          },
-        },
-      ],
     ],
   },
   trailingSlash: "ignore",
