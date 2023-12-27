@@ -1,0 +1,159 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "Converting Images to monochrome BMP's using the canvas"
+description: "I had to do this recently and found out the hard way that theres no info on the internet on how to do this using the canvas so i made my own example using chatgpt"
+pubDate: "Dec 27 2023"
+heroImage: "/assets/183776_A image being printed 2 color _xl-1024-v1-0.bmp"
+---
+
+Recently i had to create monochrome bmp's from a image to be able to print them on a thermal printer, i couldn't find out how to do this online so i made a little code snippet with the help of chatgpt that does.
+
+```js
+export async function canvasToMonochromeBMP() {
+  let canvas = _("canvas");
+
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imgData.data;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    data[i] = data[i + 1] = data[i + 2] = avg;
+  }
+
+  let rows = [];
+  for (let y = 0; y < canvas.height; y++) {
+    let row = "";
+    for (let x = 0; x < canvas.width; x++) {
+      const i = (y * canvas.width + x) * 4;
+      row += data[i + 3] == 0 ? "1" : "0";
+    }
+    while (row.length % 32 !== 0) {
+      row += "0";
+    }
+    rows.push(row);
+  }
+  rows = rows.reverse();
+  let bits = rows.join("");
+
+  const bytes = [];
+  for (let i = 0; i < bits.length; i += 8) {
+    bytes.push(parseInt(bits.substr(i, 8), 2));
+  }
+
+  const fileSize = 14 + 40 + 8 + bytes.length;
+  const dataOffset = 14 + 40 + 8;
+
+  const fileHeader = [
+    0x42,
+    0x4d,
+    fileSize & 0xff,
+    (fileSize >> 8) & 0xff,
+    (fileSize >> 16) & 0xff,
+    (fileSize >> 24) & 0xff,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    dataOffset & 0xff,
+    (dataOffset >> 8) & 0xff,
+    (dataOffset >> 16) & 0xff,
+    (dataOffset >> 24) & 0xff,
+  ];
+
+  const infoHeader = [
+    40,
+    0,
+    0,
+    0,
+    canvas.width & 0xff,
+    (canvas.width >> 8) & 0xff,
+    (canvas.width >> 16) & 0xff,
+    (canvas.width >> 24) & 0xff,
+    canvas.height & 0xff,
+    (canvas.height >> 8) & 0xff,
+    (canvas.height >> 16) & 0xff,
+    (canvas.height >> 24) & 0xff,
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ];
+
+  const palette = [0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0x00];
+
+  const bmpData = new Uint8Array([
+    ...fileHeader,
+    ...infoHeader,
+    ...palette,
+    ...bytes,
+  ]);
+  return bmpData;
+}
+```
+
+Thats it!
+
+Fun fact BMP's have the data order reversed thats why the `rows = rows.reverse();` without that it still works but you just have a bmp with the data in the wrong order lol.
+
+The canvas can create BMP's and they work fine as BMP's but they wont be 1 bit which this image will be.
+
+I also have this tiny helper function that turns the canvas black white
+
+```js
+function toMonochrome(imgData, threshold = 128) {
+  const newColorRgb = [0, 0, 0];
+
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    if (imgData.data[i + 3] < 255) {
+      imgData.data[i] = 255;
+      imgData.data[i + 1] = 255;
+      imgData.data[i + 2] = 255;
+      imgData.data[i + 3] = 0;
+      continue;
+    }
+
+    const gray =
+      0.299 * imgData.data[i] +
+      0.587 * imgData.data[i + 1] +
+      0.114 * imgData.data[i + 2];
+
+    const binary = gray >= threshold ? 255 : 0;
+
+    imgData.data[i] = binary === 0 ? newColorRgb[0] : 255;
+    imgData.data[i + 1] = binary === 0 ? newColorRgb[1] : 255;
+    imgData.data[i + 2] = binary === 0 ? newColorRgb[2] : 255;
+    imgData.data[i + 3] = binary === 0 ? 255 : 0;
+  }
+}
+```
+
+I made a little demo down below if you just need to convert a single image and don't need this in your website
+
+import Convert from "../../components/Convert.astro";
+
+<Convert />

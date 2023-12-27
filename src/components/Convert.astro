@@ -1,0 +1,263 @@
+<img id="image" style="visibility: hidden;" />
+<div
+  class="bg-base-200 p-4 rounded-2xl flex justify-center flex-col"
+  style=" min-height: min(60rem, 80vh); min-width: min(60rem, 80vw);"
+>
+  <div class="flex p-2">
+    <div class="text-center flex flex-col max-w-96">
+      <input id="file" type="file" class="file-input" />
+      <label>
+        Contrast
+        <input type="range" max="100" value="80" class="range range-primary" />
+      </label>
+      <div class="mr-auto">
+        <button class="btn btn-primary" id="download" disabled="true"
+          >Download!</button
+        >
+      </div>
+    </div>
+
+    <div class="ml-auto before:flex flex-col gap-4">
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Height</span>
+        </div>
+        <input
+          class="input input-primary input-disabled !bg-error/20"
+          id="height"
+          type="number"
+          disabled
+        />
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Width</span>
+        </div>
+        <input class="input input-primary" id="width" type="number" />
+      </label>
+    </div>
+  </div>
+  <canvas
+    id="canvas"
+    class="bg-white"
+    style="min-height: min(60rem, 60vh); min-width: min(60rem, 60vw);"></canvas>
+</div>
+
+<script type="module">
+  export function _(id) {
+    return document.getElementById(id);
+  }
+
+  function hexToRgb(hex) {
+    hex = hex.replace(/^#/, "");
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+
+    return [r, g, b];
+  }
+
+  function toMonochrome(imgData, threshold = 128) {
+    const newColorRgb = [0, 0, 0];
+
+    for (let i = 0; i < imgData.data.length; i += 4) {
+      if (imgData.data[i + 3] < 255) {
+        imgData.data[i] = 255;
+        imgData.data[i + 1] = 255;
+        imgData.data[i + 2] = 255;
+        imgData.data[i + 3] = 0;
+        continue;
+      }
+
+      const gray =
+        0.299 * imgData.data[i] +
+        0.587 * imgData.data[i + 1] +
+        0.114 * imgData.data[i + 2];
+
+      const binary = gray >= threshold ? 255 : 0;
+
+      imgData.data[i] = binary === 0 ? newColorRgb[0] : 255;
+      imgData.data[i + 1] = binary === 0 ? newColorRgb[1] : 255;
+      imgData.data[i + 2] = binary === 0 ? newColorRgb[2] : 255;
+      imgData.data[i + 3] = binary === 0 ? 255 : 0;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = _("file");
+    const range = document.querySelector('input[type="range"]');
+    const canvas = _("canvas");
+    const ctx = canvas.getContext("2d");
+
+    fileInput.addEventListener("change", handleFileSelect);
+    range.addEventListener("change", handleFileSelect);
+    _("height").addEventListener("change", handleFileSelect);
+    _("width").addEventListener("change", handleFileSelect);
+
+    function handleFileSelect(ev) {
+      console.log("Rerender");
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = new Image();
+          img.src = e.target.result;
+
+          img.onload = function () {
+            if (ev.target == fileInput) {
+              _("width").value = img.width;
+            }
+
+            const aspectRatio = img.width / img.height;
+
+            const newWidth = _("width").value;
+            const newHeight = Math.round(newWidth / aspectRatio);
+
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+
+            ctx.drawImage(img, 0, 0, newWidth, newHeight);
+
+            const imageData = ctx.getImageData(0, 0, newWidth, newHeight);
+            toMonochrome(imageData, (range.value / 100) * 255);
+            ctx.putImageData(imageData, 0, 0);
+
+            _("download").disabled = false;
+            _("height").value = newHeight;
+
+            canvas.setAttribute("name", file.name);
+          };
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  });
+
+  _("download").addEventListener("click", async () => {
+    const data = await canvasToMonochromeBMP();
+    download({
+      data: data,
+      filename: _("canvas").getAttribute("name").split(".")[0] + ".bmp",
+      contentType: "image/bmp",
+    });
+  });
+
+  export function download({ data, filename, contentType }) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([data], { type: contentType }));
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    link.remove();
+  }
+
+  export async function canvasToMonochromeBMP() {
+    let canvas = _("canvas");
+
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imgData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+      data[i] = data[i + 1] = data[i + 2] = avg;
+    }
+
+    let rows = [];
+    for (let y = 0; y < canvas.height; y++) {
+      let row = "";
+      for (let x = 0; x < canvas.width; x++) {
+        const i = (y * canvas.width + x) * 4;
+        row += data[i + 3] == 0 ? "1" : "0";
+      }
+      while (row.length % 32 !== 0) {
+        row += "0";
+      }
+      rows.push(row);
+    }
+    rows = rows.reverse();
+    let bits = rows.join("");
+
+    const bytes = [];
+    for (let i = 0; i < bits.length; i += 8) {
+      bytes.push(parseInt(bits.substr(i, 8), 2));
+    }
+
+    const fileSize = 14 + 40 + 8 + bytes.length;
+    const dataOffset = 14 + 40 + 8;
+
+    const fileHeader = [
+      0x42,
+      0x4d,
+      fileSize & 0xff,
+      (fileSize >> 8) & 0xff,
+      (fileSize >> 16) & 0xff,
+      (fileSize >> 24) & 0xff,
+      0x00,
+      0x00,
+      0x00,
+      0x00,
+      dataOffset & 0xff,
+      (dataOffset >> 8) & 0xff,
+      (dataOffset >> 16) & 0xff,
+      (dataOffset >> 24) & 0xff,
+    ];
+
+    const infoHeader = [
+      40,
+      0,
+      0,
+      0, //
+      canvas.width & 0xff, //
+      (canvas.width >> 8) & 0xff,
+      (canvas.width >> 16) & 0xff,
+      (canvas.width >> 24) & 0xff,
+      canvas.height & 0xff,
+      (canvas.height >> 8) & 0xff,
+      (canvas.height >> 16) & 0xff,
+      (canvas.height >> 24) & 0xff,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+    ];
+
+    const palette = [0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0x00];
+
+    const bmpData = new Uint8Array([
+      ...fileHeader,
+      ...infoHeader,
+      ...palette,
+      ...bytes,
+    ]);
+    return bmpData;
+  }
+</script>
