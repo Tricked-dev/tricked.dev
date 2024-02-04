@@ -39,11 +39,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
         </a>
       </div>
       <img
+        id="music"
         src="https://music.tricked.dev/.svg"
-        alt="Cool metrics lol"
         loading="lazy"
         decoding="async"
+        onerror="this.style.display='none'"
       />
+      <script>
+        const image = document.getElementById("music") as HTMLImageElement;
+        // prevent caching and shit
+        if (image) image.src = image.src + "?t=" + new Date().getTime();
+      </script>
     </main>
     <Footer />
   </body>
