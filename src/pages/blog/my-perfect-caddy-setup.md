@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "My perfect caddy setup"
 description: "The caddy config & tools i use for the perfect setup for my selfhosting needs"
 pubDate: "Feb 13 2024"
-heroImage: "/img/blog/active-developer.png"
+heroImage: "/assets/01HPHWCYA9W26NY0RB7T7J1XH5.png"
 ---
 
 So i wanted to setup serverside logging for my selfhosted applications to get some insights into what is used the most and how much bandwidth is being spent etc, i quickly found that goaccess is the best tool to get these insights.

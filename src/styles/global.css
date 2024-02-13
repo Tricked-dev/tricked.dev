@@ -31,10 +31,10 @@ h5,
 h6,
 strong,
 b {
-  @apply text-base-content/90;
+  /* @apply text-secondary duration-200 */
 }
-a {
-  @apply text-secondary-focus;
+a:hover {
+  @apply text-secondary duration-200
 }
 nav a {
   margin-right: 10px;
