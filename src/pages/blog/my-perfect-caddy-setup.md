@@ -128,8 +128,7 @@ services:
       - www:/var/www/goaccess/
     restart: unless-stopped
     network_mode: "host"
-    environment:
-      CLOUDFLARE_API_TOKEN: DSpvdMZ68EpYvl7A55a4tqUVzquFRbmJ2gypALYP
+
   goaccess:
     image: "docker.io/hectorm/goaccess:latest"
     restart: "unless-stopped"
