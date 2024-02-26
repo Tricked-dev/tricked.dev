@@ -8,6 +8,9 @@
   "Go": 70,
   "Postgresql": 70,
   "Flutter": 70,
+  "VisualStudio": 50,
+  "Rider": 50,
+  "Git": 70,
   "Docker": 50,
   "Rust": 80
 }
