@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Change authentik logo/branding"
 description: "A simple guide on how to change the logo / branding on a Authentik installation"
 pubDate: "April 20 2024"
-heroImage: "/img/blog/active-developer.png"
+heroImage: "/assets/themed_authentik.png"
 ---
 
 ## Introduction
