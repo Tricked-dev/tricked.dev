@@ -2,7 +2,7 @@
 layout: "../../layouts/BlogPost.astro"
 title: "Avoiding npm & nodejs when using asp.net and tailwindcss using Bun"
 description: "Simple guide on how to use bun with ASP.net and tailwindcss"
-pubDate: "Nov 19 2022"
+pubDate: "April 19 2024"
 heroImage: "/assets/1903255995_A paper plane flying over a city  _xl-beta-v2-2-2.png"
 ---
 
