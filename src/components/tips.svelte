@@ -12,12 +12,9 @@
     }
   });
 
-  $: console.log(tips);
-
   const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 
   function formatRelativeDate(date) {
-    const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
     const now = new Date();
     const diffInSeconds = (date - now) / 1000;
 
