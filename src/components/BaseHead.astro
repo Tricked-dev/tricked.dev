@@ -1,6 +1,7 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
+import { SITE_TITLE } from "../config";
 
 export interface Props {
   title: string;
@@ -8,8 +9,11 @@ export interface Props {
   image?: string;
 }
 
-const { title, description, image = "/octopus.jpg" } = Astro.props;
+let { title, description, image = "/octopus.jpg" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, "https://tricked.dev");
+if (!title.includes(SITE_TITLE)) {
+  title = `${SITE_TITLE} - ${title}`;
+}
 ---
 
 <!-- Global Metadata -->

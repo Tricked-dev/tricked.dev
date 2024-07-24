@@ -1,7 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import Layout from "./Layout.astro";
 
 export interface Props {
   url: string;
@@ -23,88 +21,67 @@ const {
 } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} image={heroImage} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-    </style>
-  </head>
+<Layout title={title} description={description} image={heroImage}>
+  <style>
+    .title {
+      font-size: 2em;
+      margin: 0.25em 0 0;
+    }
+    hr {
+      border-top: 1px solid #ddd;
+      margin: 1rem 0;
+    }
+  </style>
 
-  <body>
-    <Header />
-    <main>
-      <article>
-        {
-          heroImage && (
-            <img
-              transition:name={url}
-              class="max-h-[25rem] mx-auto object-scale-down"
-              width={720}
-              height={360}
-              src={heroImage}
-              alt=""
-            />
-          )
-        }
-        <h1 class="title" transition:name={heroImage ? "" : url}>{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
-        {
-          updatedDate && (
-            <div>
-              Last updated on <time>{updatedDate}</time>
-            </div>
-          )
-        }
-        <slot />
-      </article>
-      {
-        !about && (
-          <script
-            src="https://giscus.app/client.js"
-            data-repo="Tricked-dev/tricked.dev"
-            data-repo-id="R_kgDOHYCdHg"
-            data-category="Blogs"
-            data-category-id="DIC_kwDOHYCdHs4CS7Mv"
-            data-mapping="title"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="dark"
-            data-lang="en"
-            data-loading="lazy"
-            crossorigin="anonymous"
-            async
-          />
-        )
-      }
-      {
-        !about && (
-          <center>
-            If you liked this article consider supporting my work!
-            <div class="pt-2">
-              <a href="/sponsor" class="no-underline btn btn-secondary">
-                Donate on Github
-              </a>
-            </div>
-          </center>
-        )
-      }
-      <a
-        href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
-          .split("/")
-          .at(-1)}`}>View on Github</a
-      >
-    </main>
-    <Footer />
-  </body>
-</html>
+  <article>
+    {
+      heroImage && (
+        <img
+          transition:name={url}
+          class="max-h-[25rem] mx-auto object-scale-down"
+          width={720}
+          height={360}
+          src={heroImage}
+          alt=""
+        />
+      )
+    }
+    <h1 class="title" transition:name={heroImage ? "" : url}>{title}</h1>
+    {pubDate && <time>{pubDate}</time>}
+    {
+      updatedDate && (
+        <div>
+          Last updated on <time>{updatedDate}</time>
+        </div>
+      )
+    }
+    <slot />
+  </article>
+  {
+    !about && (
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="Tricked-dev/tricked.dev"
+        data-repo-id="R_kgDOHYCdHg"
+        data-category="Blogs"
+        data-category-id="DIC_kwDOHYCdHs4CS7Mv"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async
+      />
+    )
+  }
+
+  <a
+    href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
+      .split("/")
+      .at(-1)}`}>View on Github</a
+  >
+</Layout>
