@@ -2,16 +2,15 @@ import cloudflare from "@astrojs/cloudflare";
 import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
 import rehypeSlug from "rehype-slug";
-import rehypeToc from "rehype-toc";
 import remarkToc from "remark-toc";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import svelte from "@astrojs/svelte";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://tricked.dev",
+  prefetch: true,
   integrations: [
     mdx({
       extendPlugins: false,
@@ -20,7 +19,7 @@ export default defineConfig({
       changefreq: "weekly",
     }),
     tailwind(),
-    prefetch(),
+    svelte(),
   ],
   experimental: {},
   output: "hybrid",
@@ -35,9 +34,7 @@ export default defineConfig({
         },
       ],
     ],
-    rehypePlugins: [
-      [rehypeSlug, {}],
-    ],
+    rehypePlugins: [[rehypeSlug, {}]],
   },
   trailingSlash: "ignore",
   vite: {
