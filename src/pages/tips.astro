@@ -13,7 +13,11 @@ const resultList = await pb.collection("tips").getList(1, 500, {});
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={`${SITE_TITLE} | Tips`}
+      description={"Small useful things you might need if not that's fine too "}
+      image="/assets/_d012ffb3-d56c-4001-83f6-d0fbf3604a63.jpeg"
+    />
     <style is:global>
       body {
         --width: 80rem;

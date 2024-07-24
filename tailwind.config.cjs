@@ -1,7 +1,6 @@
 const daisyui = require("daisyui");
 const themes = require("daisyui/src/theming/themes");
 
-
 const basic = {
   ...themes["business"],
   ...themes["forest"],
@@ -26,11 +25,6 @@ const light = {
   ["base-200"]: themes["light"]["base-200"],
   ["base-300"]: themes["light"]["base-300"],
 };
-
-console.log({
-  basic, black, light
-})
-
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
