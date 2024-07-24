@@ -41,7 +41,7 @@
   {#each tips as tip}
     <div class="card bg-base-200 shadow-xl">
       <div class="card-body p-4">
-        <h2 class="card-title mb-0">
+        <h2 class="card-title my-0">
           {tip.summary}
         </h2>
         <span class="text-sm text-base-content/70">
