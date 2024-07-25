@@ -1,39 +1,13 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import DL from "../components/dl.svelte";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
-import PocketBase from "pocketbase";
-
-const pb = new PocketBase("https://pb.tricked.dev");
-const resultList = await pb.collection("tips").getList(1, 500, {});
+import Layout from "../layouts/Layout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title={`${SITE_TITLE} | Tips`}
-      description={"Small useful things you might need if not that's fine too "}
-      image="/assets/_d012ffb3-d56c-4001-83f6-d0fbf3604a63.jpeg"
-    />
-    <style is:global>
-      body {
-        --width: 80rem;
-      }
-    </style>
-  </head>
-  <body class="">
-    <Header title={`${SITE_TITLE}`} />
-    <main>
-      <section>
-        <h2>Epic Tricked tips</h2>
-        <div id="list">
-          <DL client:idle tips={resultList.items} />
-        </div>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Layout>
+  <section>
+    <h2>Epic Tricked Release Downloader</h2>
+    <div id="list">
+      <DL client:idle />
+    </div>
+  </section>
+</Layout>

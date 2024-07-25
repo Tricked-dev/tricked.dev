@@ -18,10 +18,10 @@ const projects = [
     bits: 0b111,
   },
   {
-    repo: "tricked-dev/stardew-mod-manager"
+    repo: "tricked-dev/stardew-mod-manager",
   },
   {
-    repo: "BlazeWatch/carbon"
+    repo: "BlazeWatch/carbon",
   },
   {
     repo: "nowrom/devices",
@@ -73,11 +73,12 @@ const projects = [
 let query = `
 {
 ${projects
-    .filter((x) => x.repo)
-    .map(
-      (x) =>
-        `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${x.repo?.split("/")[0]
-        }", name: "${x.repo?.split("/")[1]}") {
+  .filter((x) => x.repo)
+  .map(
+    (x) =>
+      `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${
+        x.repo?.split("/")[0]
+      }", name: "${x.repo?.split("/")[1]}") {
     description
     name
     stargazerCount
@@ -96,8 +97,8 @@ ${projects
     }
   }
 `
-    )
-    .join("")}}
+  )
+  .join("")}}
 `;
 
 let result: any[];
@@ -150,7 +151,7 @@ export const getData = async () => {
   return res;
 };
 
-export const get = async () => {
+export const GET = async () => {
   return {
     body: JSON.stringify(await getData()),
     headers: {

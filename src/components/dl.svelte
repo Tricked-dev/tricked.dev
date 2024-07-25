@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import Chevron from "./icons/Chevron.svelte";
 
   let releases: Release[];
 
@@ -96,31 +97,127 @@
     eyes: number;
   }
 
+  let timer: any;
+  let repo = "tricked-dev/desktoppetRS";
+
+  $: {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fetchReleases();
+    }, 750);
+  }
+
   async function fetchReleases() {
     //https://api.github.com/repos/ShareX/ShareX/releases
-    const res = await fetch(
-      "https://api.github.com/repos/ShareX/ShareX/releases",
-      {
-        method: "GET",
-      }
-    ).then((res) => res.json());
+    const res = await fetch(`https://api.github.com/repos/${repo}/releases`, {
+      method: "GET",
+    }).then((res) => res.json());
     releases = res;
+    expandedRow = releases[0]?.id ?? null;
   }
 
   onMount(fetchReleases);
+
+  let expandedRow: number | null = null;
+
+  function toggleRow(id: number) {
+    expandedRow = expandedRow === id ? null : id;
+  }
+
+  function formatBytes(bytes: number, decimals = 2) {
+    if (bytes === 0) return "0 Bytes";
+
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return (
+      parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + " " + sizes[i]
+    );
+  }
+
+  function formatNumber(num: number, decimals = 1) {
+    if (num === 0) return "0";
+
+    const k = 1000;
+    const sizes = ["", "K", "M", "B", "T"];
+    const i = Math.floor(Math.log(num) / Math.log(k));
+
+    if (i === 0) return num.toString();
+
+    return parseFloat((num / Math.pow(k, i)).toFixed(decimals)) + sizes[i]!;
+  }
 </script>
 
 <div>
-  Releases:
+  <input
+    type="text"
+    class="input input-bordered w-full my-2"
+    bind:value={repo}
+  />
 
-  <div>
-    {#each releases ?? [] as release}
-      <details>
-        <summary>{release.name}</summary>
-        {#each release.assets as asset}
-          <a href={asset.browser_download_url}>{asset.name}</a>
-        {/each}
-      </details>
-    {/each}
-  </div>
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th>Release Name</th>
+        <th>Release Date</th>
+        <th>Downloads</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each releases ?? [] as row}
+        <tr
+          on:click={() => toggleRow(row.id)}
+          class="hover:bg-base-300"
+          class:bg-base-300={expandedRow === row.id}
+        >
+          <td class="flex gap-2">
+            <div
+              class="duration-200 scale-150"
+              class:rotate-90={expandedRow !== row.id}
+              class:rotate-180={expandedRow === row.id}
+            >
+              <Chevron></Chevron>
+            </div>
+
+            {row.name}</td
+          >
+          <td>{row.created_at.slice(0, "0000-00-00".length)}</td>
+          <td
+            >{formatNumber(
+              row.assets.reduce((v, c) => v + c.download_count, 0)
+            )}</td
+          >
+        </tr>
+        {#if expandedRow === row.id}
+          <tr class="bg-accent">
+            <td colspan="100%" class="">
+              <div class="flex flex-col gap-4">
+                {#each row.assets as asset}
+                  <a
+                    href={asset.browser_download_url}
+                    class="no-underline text-base-content hover:text-base-content bg-base-200 hover:bg-base-300 w-auto p-2"
+                    >{asset.name}
+                    <span class="bg-accent text-accent-content p-1">
+                      {formatBytes(asset.size)}
+                    </span>
+                    <span class="bg-accent text-accent-content p-1">
+                      {formatNumber(asset.download_count)}
+                    </span>
+                  </a>
+                {/each}
+              </div>
+            </td>
+          </tr>
+        {/if}
+      {/each}
+    </tbody>
+  </table>
+
+  <style>
+    .collapse-content {
+      padding: 1rem;
+      background-color: #f3f4f6;
+    }
+  </style>
 </div>
