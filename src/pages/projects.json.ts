@@ -152,10 +152,5 @@ export const getData = async () => {
 };
 
 export const GET = async () => {
-  return {
-    body: JSON.stringify(await getData()),
-    headers: {
-      "content-type": "application/json",
-    },
-  };
+  return Response.json(await getData());
 };
