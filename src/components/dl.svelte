@@ -99,21 +99,36 @@
 
   let timer: any;
   let repo = "tricked-dev/desktoppetRS";
+  let loading = false;
 
-  $: {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      fetchReleases();
-    }, 750);
-  }
+  let lastResolved = "";
 
-  async function fetchReleases() {
-    //https://api.github.com/repos/ShareX/ShareX/releases
-    const res = await fetch(`https://api.github.com/repos/${repo}/releases`, {
-      method: "GET",
-    }).then((res) => res.json());
-    releases = res;
-    expandedRow = releases[0]?.id ?? null;
+  async function fetchReleases(retry = 3) {
+    console.log("Fetching new release retries:", retry);
+    if (lastResolved === repo) return;
+    try {
+      loading = true;
+      const res = await fetch(`https://api.github.com/repos/${repo}/releases`, {
+        method: "GET",
+      });
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      const data = await res.json();
+      releases = data;
+      expandedRow = releases[0]?.id ?? null;
+      loading = false;
+      lastResolved = repo;
+    } catch (e) {
+      console.error(e);
+      if (retry > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        fetchReleases(retry - 1);
+      } else {
+        loading = false;
+        throw e;
+      }
+    }
   }
 
   onMount(fetchReleases);
@@ -154,6 +169,12 @@
     type="text"
     class="input input-bordered w-full my-2"
     bind:value={repo}
+    on:change={() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        fetchReleases();
+      }, 750);
+    }}
   />
 
   <table class="table w-full">
