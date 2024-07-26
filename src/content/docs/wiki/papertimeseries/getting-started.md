@@ -24,7 +24,7 @@ And a example docker-compose.yml file
 PaperTimeSeries requires [TimescaleDB](https://www.timescale.com/), you can find out how to host it here <https://docs.timescale.com/self-hosted/latest/>
 
 ```yml
-# file: ocker-compose.yml
+# file: docker-compose.yml
 version: "3"
 services:
   postgresql:
