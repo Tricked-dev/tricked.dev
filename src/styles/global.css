@@ -34,7 +34,7 @@ b {
   /* @apply text-secondary duration-200 */
 }
 a:hover {
-  @apply text-secondary duration-200
+  @apply text-secondary duration-200;
 }
 nav a {
   margin-right: 10px;
