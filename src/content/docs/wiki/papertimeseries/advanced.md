@@ -1,12 +1,10 @@
 ---
-title: My docs
-description: Learn more about my project in this docs site built with Starlight.
+title: Advanced stuff
+description: Some advanced info about Paper Time Series
 sidebar:
   hidden: false
 head: []
 ---
-
-# Advanced stuff
 
 - this plugin changes the global java time to UTC
 - the time is in ticks!

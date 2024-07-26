@@ -1,18 +1,17 @@
 ---
-title: My docs
-description: Learn more about my project in this docs site built with Starlight.
+title: About
+description: Information about Paper Time Series.
 sidebar:
   hidden: false
+  order: 0
 head: []
 ---
 
-# About
+You can download it on [Modrinth](https://modrinth.com/plugin/papertimeseries)
 
-You can buy it here: [On my ko-fi shop](https://ko-fi.com/s/913dcf72ab)
-
-::alert{type="warning"}
+:::note
 You are expected to have a decent understanding of being a sysadmin to use this plugin
-::
+:::
 
 Paper Time Series is a plugin that exports server statistics to a Postgresql database, To display it on Grafana.
 

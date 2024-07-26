@@ -136,37 +136,37 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"docs": {
-"index.md": {
-	id: "index.md";
-  slug: "index";
+"wiki/index.md": {
+	id: "wiki/index.md";
+  slug: "wiki";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".md"] };
-"papertimeseries/about.md": {
-	id: "papertimeseries/about.md";
-  slug: "papertimeseries/about";
+"wiki/papertimeseries/about.md": {
+	id: "wiki/papertimeseries/about.md";
+  slug: "wiki/papertimeseries/about";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".md"] };
-"papertimeseries/advanced.md": {
-	id: "papertimeseries/advanced.md";
-  slug: "papertimeseries/advanced";
+"wiki/papertimeseries/advanced.md": {
+	id: "wiki/papertimeseries/advanced.md";
+  slug: "wiki/papertimeseries/advanced";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".md"] };
-"papertimeseries/dashboards.md": {
-	id: "papertimeseries/dashboards.md";
-  slug: "papertimeseries/dashboards";
+"wiki/papertimeseries/dashboards.md": {
+	id: "wiki/papertimeseries/dashboards.md";
+  slug: "wiki/papertimeseries/dashboards";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".md"] };
-"papertimeseries/getting-started.md": {
-	id: "papertimeseries/getting-started.md";
-  slug: "papertimeseries/getting-started";
+"wiki/papertimeseries/getting-started.md": {
+	id: "wiki/papertimeseries/getting-started.md";
+  slug: "wiki/papertimeseries/getting-started";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
