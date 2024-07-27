@@ -1,12 +1,11 @@
 ---
-title: Dashboard
+title: Dashboards
 description: Copy and Paste dashboard for grafana
 sidebar:
   hidden: false
 head: []
+next: false
 ---
-
-# Dashboards
 
 You can download a dashboard json here to use in Grafana
 

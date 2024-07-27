@@ -104,6 +104,10 @@
   let lastResolved = "";
 
   async function fetchReleases(retry = 3) {
+    if (!repo.includes("/")) {
+      loading = false;
+      return;
+    }
     console.log("Fetching new release retries:", retry);
     if (lastResolved === repo) return;
     try {
@@ -119,6 +123,7 @@
       expandedRow = releases[0]?.id ?? null;
       loading = false;
       lastResolved = repo;
+      window.history.pushState({}, "", `?repo=${repo}`);
     } catch (e) {
       console.error(e);
       if (retry > 0) {
@@ -132,6 +137,13 @@
   }
 
   onMount(fetchReleases);
+  onMount(() => {
+    let res = new URLSearchParams(window.location.search).get("repo");
+    if (res && res.includes("/")) {
+      repo = res;
+      fetchReleases();
+    }
+  });
 
   let expandedRow: number | null = null;
 
@@ -169,72 +181,79 @@
     type="text"
     class="input input-bordered w-full my-2"
     bind:value={repo}
-    on:change={() => {
+    on:input={() => {
       clearTimeout(timer);
       timer = setTimeout(() => {
         fetchReleases();
       }, 750);
     }}
+    on:change={() => {
+      fetchReleases();
+    }}
   />
-
-  <table class="table w-full">
-    <thead>
-      <tr>
-        <th>Release Name</th>
-        <th>Release Date</th>
-        <th>Downloads</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each releases ?? [] as row}
-        <tr
-          on:click={() => toggleRow(row.id)}
-          class="hover:bg-base-300"
-          class:bg-base-300={expandedRow === row.id}
-        >
-          <td class="flex gap-2">
-            <div
-              class="duration-200 scale-150"
-              class:rotate-90={expandedRow !== row.id}
-              class:rotate-180={expandedRow === row.id}
-            >
-              <Chevron></Chevron>
-            </div>
-
-            {row.name}</td
-          >
-          <td>{row.created_at.slice(0, "0000-00-00".length)}</td>
-          <td
-            >{formatNumber(
-              row.assets.reduce((v, c) => v + c.download_count, 0)
-            )}</td
-          >
+  {#if loading}
+    <div class="flex w-full justify-center py-2">
+      <span class="loading loading-dots loading-lg mx-auto"></span>
+    </div>
+  {:else}
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Release Name</th>
+          <th>Release Date</th>
+          <th>Downloads</th>
         </tr>
-        {#if expandedRow === row.id}
-          <tr class="bg-accent">
-            <td colspan="100%" class="">
-              <div class="flex flex-col gap-4">
-                {#each row.assets as asset}
-                  <a
-                    href={asset.browser_download_url}
-                    class="no-underline text-base-content hover:text-base-content bg-base-200 hover:bg-base-300 w-auto p-2"
-                    >{asset.name}
-                    <span class="bg-accent text-accent-content p-1">
-                      {formatBytes(asset.size)}
-                    </span>
-                    <span class="bg-accent text-accent-content p-1">
-                      {formatNumber(asset.download_count)}
-                    </span>
-                  </a>
-                {/each}
+      </thead>
+      <tbody>
+        {#each releases ?? [] as row}
+          <tr
+            on:click={() => toggleRow(row.id)}
+            class="hover:bg-base-300"
+            class:bg-base-300={expandedRow === row.id}
+          >
+            <td class="flex gap-2">
+              <div
+                class="duration-200 scale-150"
+                class:rotate-90={expandedRow !== row.id}
+                class:rotate-180={expandedRow === row.id}
+              >
+                <Chevron></Chevron>
               </div>
-            </td>
-          </tr>
-        {/if}
-      {/each}
-    </tbody>
-  </table>
 
+              {row.name}</td
+            >
+            <td>{row.created_at.slice(0, "0000-00-00".length)}</td>
+            <td
+              >{formatNumber(
+                row.assets.reduce((v, c) => v + c.download_count, 0)
+              )}</td
+            >
+          </tr>
+          {#if expandedRow === row.id}
+            <tr class="bg-accent">
+              <td colspan="100%" class="">
+                <div class="flex flex-col gap-4">
+                  {#each row.assets as asset}
+                    <a
+                      href={asset.browser_download_url}
+                      class="no-underline text-base-content hover:text-base-content bg-base-200 hover:bg-base-300 w-auto p-2"
+                      >{asset.name}
+                      <span class="bg-accent text-accent-content p-1">
+                        {formatBytes(asset.size)}
+                      </span>
+                      <span class="bg-accent text-accent-content p-1">
+                        {formatNumber(asset.download_count)}
+                      </span>
+                    </a>
+                  {/each}
+                </div>
+              </td>
+            </tr>
+          {/if}
+        {/each}
+      </tbody>
+    </table>
+  {/if}
   <style>
     .collapse-content {
       padding: 1rem;

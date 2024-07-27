@@ -4,6 +4,7 @@ description: Information about Paper Time Series.
 sidebar:
   hidden: false
   order: 0
+prev: false
 head: []
 ---
 
