@@ -9,10 +9,13 @@ import tailwind from "@astrojs/tailwind";
 import svelte from "@astrojs/svelte";
 import starlight from "@astrojs/starlight";
 import expressiveCode from "astro-expressive-code";
+import themes from "./themes";
+
+const site = "https://tricked.dev";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://tricked.dev",
+  site: site,
   prefetch: true,
   integrations: [
     expressiveCode(),
@@ -27,8 +30,13 @@ export default defineConfig({
     starlight({
       customCss: ["./src/styles/global.css"],
       title: "Tricked.dev",
+      favicon: "/favicon.png",
       tableOfContents: true,
-      social: {},
+      social: {
+        discord: site + "/discord",
+        twitter: site + "/twitter",
+        github: site + "/github",
+      },
       disable404Route: true,
       sidebar: [
         // A collapsed group of links.
@@ -60,6 +68,9 @@ export default defineConfig({
           content: "* { --width: auto }",
         },
       ],
+      editLink: {
+        baseUrl: "https://github.com/tricked-dev/tricked.dev/blob/master/",
+      },
       plugins: [],
     }),
   ],

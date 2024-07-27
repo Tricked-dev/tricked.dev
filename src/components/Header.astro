@@ -3,11 +3,11 @@ import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../config";
 ---
 
-<header>
+<header class="w-full">
   <h2>
     {SITE_TITLE}
   </h2>
-  <nav>
+  <nav class="w-full flex items-center gap-2 h-0.5">
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/blog">Blog</HeaderLink>
     <HeaderLink href="/about">About</HeaderLink>
@@ -17,6 +17,29 @@ import { SITE_TITLE } from "../config";
     <HeaderLink href="/twitter" target="_blank">Twitter</HeaderLink>
     <HeaderLink href="/github" target="_blank">GitHub</HeaderLink>
     <HeaderLink href="/discord" target="_blank">Discord</HeaderLink>
+    <button id="theme" class="ml-auto btn btn-ghost p-1 py-0.5">Basic</button>
+    <script type="module" async is:inline>
+      document.addEventListener("astro:after-swap", themeStuff);
+      themeStuff();
+
+      function themeStuff() {
+        const themes = ["dark", "black", "light"];
+        let getBtn = () => document.getElementById("theme");
+        let theme = localStorage.getItem("starlight-theme");
+        if (theme) {
+          getBtn().innerText = theme;
+        }
+
+        getBtn().addEventListener("click", () => {
+          const theme = localStorage.getItem("starlight-theme");
+          const index = themes.indexOf(theme);
+          const next = themes[(index + 1) % themes.length];
+          localStorage.setItem("starlight-theme", next);
+          getBtn().innerText = next;
+          document.documentElement.setAttribute("data-theme", next);
+        });
+      }
+    </script>
   </nav>
 </header>
 

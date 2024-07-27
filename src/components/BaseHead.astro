@@ -46,4 +46,17 @@ if (!title.includes(SITE_TITLE)) {
 <!-- Canonical URL -->
 <meta name="canonical" content={canonicalURL} />
 
+<script>
+  const syncTheme = () => {
+    let theme = localStorage.getItem("starlight-theme");
+
+    if (theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  };
+
+  syncTheme();
+  document.addEventListener("astro:after-swap", syncTheme);
+</script>
+
 <ViewTransitions />
