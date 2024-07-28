@@ -10,6 +10,12 @@ const {
 } = Astro.props;
 ---
 
+<style>
+  * {
+    --width: auto;
+  }
+</style>
+
 <BaseHead
   title={title}
   description={body.trim().split("\n")[0].trim() +
@@ -18,4 +24,8 @@ const {
   image={image}
 />
 
-<Default {...Astro.props} />
+<style>
+  body {
+    --width: auto;
+  }
+</style>

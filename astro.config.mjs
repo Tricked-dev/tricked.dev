@@ -54,20 +54,7 @@ export default defineConfig({
           },
         },
       ],
-      head: [
-        {
-          tag: "script",
-          attrs: {
-            "data-goatcounter": "https://stats.tricked.dev/count",
-            async: true,
-            src: "//stats.tricked.dev/count.js",
-          },
-        },
-        {
-          tag: "style",
-          content: "* { --width: auto }",
-        },
-      ],
+
       editLink: {
         baseUrl: "https://github.com/tricked-dev/tricked.dev/blob/master/",
       },
@@ -75,6 +62,7 @@ export default defineConfig({
       components: {
         Head: "./src/components/starlight/Head.astro",
         ThemeSelect: "./src/components/ThemeSwitcher.astro",
+        ThemeProvider: "./src/components/starlight/Clear.astro",
       },
     }),
   ],
