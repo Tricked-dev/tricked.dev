@@ -20,7 +20,7 @@ const {
   title={title}
   description={body.trim().split("\n")[0].trim() +
     " " +
-    body.trim().split("\n")?.[1]?.trim() ?? ""}
+    (body.trim().split("\n")?.[1]?.trim() ?? "")}
   image={image}
 />
 
