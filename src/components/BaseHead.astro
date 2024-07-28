@@ -12,7 +12,7 @@ export interface Props {
 let { title, description, image = "/octopus.jpg" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, "https://tricked.dev");
 if (!title.includes(SITE_TITLE)) {
-  title = `${SITE_TITLE} - ${title}`;
+  title = `${title} - ${SITE_TITLE}`;
 }
 ---
 

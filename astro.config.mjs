@@ -72,6 +72,9 @@ export default defineConfig({
         baseUrl: "https://github.com/tricked-dev/tricked.dev/blob/master/",
       },
       plugins: [],
+      components: {
+        Head: "./src/components/starlight/Head.astro",
+      },
     }),
   ],
   experimental: {},
