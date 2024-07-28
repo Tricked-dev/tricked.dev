@@ -1,5 +1,4 @@
 import themes from "daisyui/src/theming/themes";
-
 export const dark = {
   ...themes["business"],
   ...themes["forest"],

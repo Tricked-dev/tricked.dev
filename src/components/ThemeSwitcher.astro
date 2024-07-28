@@ -1,0 +1,23 @@
+<button id="theme" class="ml-auto btn btn-ghost p-1 py-0.5">Basic</button>
+<script type="module" async is:inline>
+  document.addEventListener("astro:after-swap", themeStuff);
+  themeStuff();
+
+  function themeStuff() {
+    const themes = ["dark", "black", "light"];
+    let getBtn = () => document.getElementById("theme");
+    let theme = localStorage.getItem("starlight-theme");
+    if (theme) {
+      getBtn().innerText = theme;
+    }
+
+    getBtn().addEventListener("click", () => {
+      const theme = localStorage.getItem("starlight-theme");
+      const index = themes.indexOf(theme);
+      const next = themes[(index + 1) % themes.length];
+      localStorage.setItem("starlight-theme", next);
+      getBtn().innerText = next;
+      document.documentElement.setAttribute("data-theme", next);
+    });
+  }
+</script>

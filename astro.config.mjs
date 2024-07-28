@@ -28,7 +28,7 @@ export default defineConfig({
     tailwind(),
     svelte(),
     starlight({
-      customCss: ["./src/styles/global.css"],
+      customCss: ["./src/styles/global.css", "./src/styles/theme.css"],
       title: "Tricked.dev",
       favicon: "/favicon.png",
       tableOfContents: true,
@@ -74,6 +74,7 @@ export default defineConfig({
       plugins: [],
       components: {
         Head: "./src/components/starlight/Head.astro",
+        ThemeSelect: "./src/components/ThemeSwitcher.astro",
       },
     }),
   ],
