@@ -174,6 +174,8 @@
 
     return parseFloat((num / Math.pow(k, i)).toFixed(decimals)) + sizes[i]!;
   }
+
+  const notypecheck = (x: any) => x;
 </script>
 
 <div>
@@ -231,7 +233,7 @@
           </tr>
           {#if expandedRow === row.id}
             <tr class="bg-accent">
-              <td colspan="100%" class="">
+              <td colspan={notypecheck("100%")} class="">
                 <div class="flex flex-col gap-4">
                   {#each row.assets as asset}
                     <a

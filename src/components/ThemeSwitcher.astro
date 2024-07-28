@@ -1,23 +1,58 @@
-<button id="theme" class="ml-auto btn btn-ghost p-1 py-0.5">Basic</button>
-<script type="module" async is:inline>
-  document.addEventListener("astro:after-swap", themeStuff);
-  themeStuff();
+---
 
-  function themeStuff() {
-    const themes = ["dark", "black", "light"];
-    let getBtn = () => document.getElementById("theme");
-    let theme = localStorage.getItem("starlight-theme");
-    if (theme) {
-      getBtn().innerText = theme;
+---
+
+<starlight-theme-select class="ml-auto">
+  <select class="select select-text select-sm text-base-content">
+    <option value="dark">Dark</option>
+    <option value="black">Black</option>
+    <option value="light">Light</option>
+  </select>
+</starlight-theme-select>
+
+<script>
+  type Theme = "dark" | "black" | "light";
+
+  /** Key in `localStorage` to store color theme preference at. */
+  const storageKey = "starlight-theme";
+
+  /** Get a typesafe theme string from any JS value (unknown values are coerced to `'auto'`). */
+  const parseTheme = (theme: unknown): Theme =>
+    theme === "black" || theme === "dark" || theme === "light" ? theme : "dark";
+
+  /** Load the user’s preference from `localStorage`. */
+  const loadTheme = (): Theme =>
+    parseTheme(
+      typeof localStorage !== "undefined" && localStorage.getItem(storageKey)
+    );
+
+  /** Store the user’s preference in `localStorage`. */
+  function storeTheme(theme: Theme): void {
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(storageKey, theme);
     }
-
-    getBtn().addEventListener("click", () => {
-      const theme = localStorage.getItem("starlight-theme");
-      const index = themes.indexOf(theme);
-      const next = themes[(index + 1) % themes.length];
-      localStorage.setItem("starlight-theme", next);
-      getBtn().innerText = next;
-      document.documentElement.setAttribute("data-theme", next);
-    });
   }
+
+  /** Update select menu UI, document theme, and local storage state. */
+  function onThemeChange(theme: Theme): void {
+    //@ts-ignore
+    StarlightThemeProvider.updatePickers(theme);
+    document.documentElement.dataset.theme = theme;
+    storeTheme(theme);
+  }
+
+  // React to changes in system color scheme.
+
+  class StarlightThemeSelect extends HTMLElement {
+    constructor() {
+      super();
+      onThemeChange(loadTheme());
+      this.querySelector("select")?.addEventListener("change", (e) => {
+        if (e.currentTarget instanceof HTMLSelectElement) {
+          onThemeChange(parseTheme(e.currentTarget.value));
+        }
+      });
+    }
+  }
+  customElements.define("starlight-theme-select", StarlightThemeSelect);
 </script>

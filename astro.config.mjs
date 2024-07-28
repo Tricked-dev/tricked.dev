@@ -28,7 +28,7 @@ export default defineConfig({
     tailwind(),
     svelte(),
     starlight({
-      customCss: ["./src/styles/global.css", "./src/styles/theme.css"],
+      customCss: ["./src/styles/global.css"],
       title: "Tricked.dev",
       favicon: "/favicon.png",
       tableOfContents: true,
