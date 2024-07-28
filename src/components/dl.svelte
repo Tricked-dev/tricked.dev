@@ -128,7 +128,7 @@
       console.error(e);
       if (retry > 0) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        fetchReleases(retry - 1);
+        await fetchReleases(retry - 1);
       } else {
         loading = false;
         throw e;
