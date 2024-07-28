@@ -1,16 +1,21 @@
 ---
 import Default from "@astrojs/starlight/components/Head.astro";
 import BaseHead from "../BaseHead.astro";
-console.log(Astro.props);
 
 const {
   entry: {
-    data: { title },
+    data: { title, image },
     body,
   },
 } = Astro.props;
 ---
 
-<BaseHead title={title} description={body.trim().split("\n")[0].trim()} />
+<BaseHead
+  title={title}
+  description={body.trim().split("\n")[0].trim() +
+    " " +
+    body.trim().split("\n")?.[1]?.trim() ?? ""}
+  image={image}
+/>
 
 <Default {...Astro.props} />

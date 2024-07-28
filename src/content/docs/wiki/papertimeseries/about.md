@@ -1,6 +1,7 @@
 ---
 title: About
 description: Information about Paper Time Series.
+image: /assets/pts/c0b8c375-22be-410d-818e-30d0a4ac0792_2023-07-20_21-16-25.png
 sidebar:
   hidden: false
   order: 0
