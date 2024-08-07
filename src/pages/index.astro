@@ -1,5 +1,6 @@
 ---
 import tech from "../../public/tech.json";
+import Contact from "../components/contact.svelte";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -22,6 +23,7 @@ import Layout from "../layouts/Layout.astro";
         .slice(0, -1)
     }
   </p>
+  <Contact client:idle />
   <div class="text-center">
     <a target="_blank" href="/sponsor">
       <img src="/metrics" alt="Cool metrics lol" />
