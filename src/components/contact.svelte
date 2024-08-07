@@ -38,6 +38,7 @@
         name="name"
         required
         minlength="3"
+        placeholder="Your name"
         bind:value={data.name}
       />
     </div>
@@ -52,6 +53,7 @@
         name="email"
         required
         minlength="3"
+        placeholder="I will probably share your email"
         bind:value={data.email}
       />
     </div>
@@ -65,6 +67,7 @@
         id="phone"
         name="phone"
         pattern={"[7-9]{1}[0-9]{9}"}
+        placeholder="Might use this as phone number when i buy pizza"
         bind:value={data.phone}
       />
     </div>
@@ -80,6 +83,7 @@
       name="message"
       required
       minlength="1"
+      placeholder="Yeah i bet you would send me a message"
       bind:value={data.message}
     />
   </div>
