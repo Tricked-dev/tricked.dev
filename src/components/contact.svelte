@@ -32,7 +32,7 @@
         <span class="label-text">Name</span>
       </label>
       <input
-        class="input input-bordered"
+        class="input input-bordered w-40"
         type="text"
         id="name"
         name="name"
@@ -47,7 +47,7 @@
         <span class="label-text">Email</span>
       </label>
       <input
-        class="input input-bordered"
+        class="input input-bordered w-40"
         type="email"
         id="email"
         name="email"
@@ -62,7 +62,7 @@
         <span class="label-text">Phone</span>
       </label>
       <input
-        class="input input-bordered"
+        class="input input-bordered w-32"
         type="text"
         id="phone"
         name="phone"
@@ -78,7 +78,7 @@
       <span class="label-text">Message</span>
     </label>
     <textarea
-      class="textarea textarea-bordered"
+      class="textarea textarea-bordered max-w-[30rem] w-full"
       id="message"
       name="message"
       required

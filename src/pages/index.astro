@@ -23,7 +23,9 @@ import Layout from "../layouts/Layout.astro";
         .slice(0, -1)
     }
   </p>
-  <Contact client:idle />
+  <div class="overflow-x-scroll">
+    <Contact client:idle />
+  </div>
   <div class="text-center">
     <a target="_blank" href="/sponsor">
       <img src="/metrics" alt="Cool metrics lol" />
