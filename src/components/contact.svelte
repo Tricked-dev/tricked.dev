@@ -26,6 +26,9 @@
     window.location.reload();
   }}
 >
+  <span class="text-sm text-base-content/90"
+    >You can use this form to contact me about potential commissions</span
+  >
   <div class="flex gap-3">
     <div class="form-control">
       <label class="label" for="name">
