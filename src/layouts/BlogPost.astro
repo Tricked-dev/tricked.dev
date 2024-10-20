@@ -17,7 +17,7 @@ export interface Props {
 const {
   url,
   file,
-  content: { title, description, pubDate, updatedDate, heroImage, about },
+  content: { title, description, pubDate, updatedDate, heroImage, about, wide },
 } = Astro.props;
 ---
 
@@ -55,6 +55,8 @@ const {
         </div>
       )
     }
+    <br/>
+    {description}
     <slot />
   </article>
   {
@@ -78,6 +80,14 @@ const {
       />
     )
   }
+  {wide &&
+    <style is:global>
+      body {
+        --width: 80rem;
+      }
+    </style>
+  }
+
 
   <a
     href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file

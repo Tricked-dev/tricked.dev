@@ -1,0 +1,32 @@
+---
+import { Code } from "astro:components";
+import { exec } from "node:child_process";
+import { writeFile, copyFile } from "node:fs/promises";
+const { code, name, inject, preview = true } = Astro.props;
+const format = "png";
+if (import.meta.env.DEV && preview) {
+  await writeFile(`dist/${name}.typ`, (inject ?? "") + "\n" + code);
+  exec(
+    `typst c --format ${format} dist/${name}.typ`,
+    async (result, _stdout, stderr) => {
+      if (result?.code && result?.code !== 0) {
+        console.error(stderr);
+        return;
+      }
+      await copyFile(
+        `dist/${name}.${format}`,
+        `public/assets/typ/${name}.${format}`
+      );
+    }
+  );
+}
+---
+
+<div class="flex gap-4 max:w-[60rem]">
+  <Code class="w-full" code={code} lang="typ" />
+  {
+    preview && (
+      <img class="bg-white" src={`/assets/typ/${name}.${format}`} alt="typ" />
+    )
+  }
+</div>

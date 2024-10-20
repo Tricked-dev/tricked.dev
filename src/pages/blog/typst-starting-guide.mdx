@@ -1,0 +1,112 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "Typst Starting Guide"
+description: "A starting guide to typst while i just started using it too so feel free to leave corrections in comments"
+pubDate: "oct 20 2024"
+heroImage: "/braving/Screenshot_20230817_221525.png"
+wide: true
+---
+
+import Typst from "../../components/Typst.astro";
+
+Creating your initial typst document
+
+<Typst
+  code={`
+#set page(
+  paper: "a4",
+  numbering: "1",
+)
+#set heading(numbering: "1.")
+#set document(title: [Document Title], author: "Tricked-dev")
+`}
+  name="hello-world"
+  preview={false}
+/>
+
+This is a good starting point. but you might want to add a page index you can do that by adding a #index where you want your index to go like this:
+
+TODO: find actual name again
+
+<Typst
+  code={`
+#set page(
+  width: auto,
+  height: auto,
+  numbering: "1",
+)
+
+#set heading(numbering: "1.")
+
+= Introduction
+
+This is a test
+
+= Another Section
+
+This is another section
+`}
+  name="table"
+  preview={true}
+/>
+
+Code highlighting Typst supports for code highlighting is pretty good you can use the same syntax as markdown.
+
+<Typst
+inject={`
+#set page(
+  width: auto,
+  height: auto,
+  numbering: "1",
+)
+`}
+  code={`
+
+\`\`\`typ
+#set page(
+  width: auto,
+  height: auto,
+  numbering: "1",
+)
+#set heading(numbering: "1.")
+#set document(title: [Document Title], author: "Tricked-dev")
+\`\`\`
+`}
+  name="code"
+  preview={true}
+/>
+
+Typst also allows you to create function and have state/variables you can use these to create a table of pricing for example and then calculate the end result.
+
+<Typst
+inject={`
+#set page(
+  width: auto,
+  height: auto,
+)
+`}
+  code={`
+#import "@preview/oxifmt:0.2.1": strfmt
+#let num = state("total", 0.0)
+
+#let add_price(price) = {
+  return [\\$#strfmt("{:.2}", price) #num.update(c=> c+price)]
+}
+
+#let format_price() = context {
+  return strfmt("\${:.2}", num.get())
+}
+
+#table(
+  columns: 2,
+  [*Name*], [*Price*],
+  [Cat Food], add_price(2.2),
+  [Dog Food], add_price(2.2),
+  [Rocket!], add_price(400),
+  table.cell(colspan: 2, fill: gray)[],
+  [Total], format_price()
+)
+
+`}
+  name="math"
+/>
