@@ -1,14 +1,15 @@
 import cloudflare from "@astrojs/cloudflare";
 import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
 import { defineConfig } from "astro/config";
+import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
+import rss from '@astrojs/rss';
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import svelte from "@astrojs/svelte";
 import starlight from "@astrojs/starlight";
-import expressiveCode from "astro-expressive-code";
+import svelte from "@astrojs/svelte";
+import tailwind from "@astrojs/tailwind";
 import themes from "./themes";
 
 const site = "https://tricked.dev";

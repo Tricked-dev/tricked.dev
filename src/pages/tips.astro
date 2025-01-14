@@ -12,7 +12,7 @@ const resultList = await pb.collection("tips").getList(1, 500, {});
   <section>
     <h2>Epic Tricked tips</h2>
     <div id="list">
-      <Tips client:idle tips={resultList.items} />
+      <Tips client:idle tips={resultList.items.toReversed()} />
     </div>
   </section>
 </Layout>

@@ -9,7 +9,7 @@
     const pb = new PocketBase(POCKETBASE_URL);
     const resultList = await pb.collection("tips").getList(1, 500, {});
     if (resultList.items.length > 0) {
-      tips = resultList.items;
+      tips = resultList.items.reverse();
     }
   });
 
