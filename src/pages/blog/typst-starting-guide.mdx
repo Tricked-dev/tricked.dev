@@ -46,8 +46,8 @@ This is a test
 
 This is another section
 `}
-  name="table"
-  preview={true}
+name="table"
+preview={true}
 />
 
 Code highlighting Typst supports for code highlighting is pretty good you can use the same syntax as markdown.
@@ -64,16 +64,16 @@ inject={`
 
 \`\`\`typ
 #set page(
-  width: auto,
-  height: auto,
-  numbering: "1",
+width: auto,
+height: auto,
+numbering: "1",
 )
 #set heading(numbering: "1.")
 #set document(title: [Document Title], author: "Tricked-dev")
 \`\`\`
 `}
-  name="code"
-  preview={true}
+name="code"
+preview={true}
 />
 
 Typst also allows you to create function and have state/variables you can use these to create a table of pricing for example and then calculate the end result.
@@ -90,23 +90,23 @@ inject={`
 #let num = state("total", 0.0)
 
 #let add_price(price) = {
-  return [\\$#strfmt("{:.2}", price) #num.update(c=> c+price)]
+return [\\$#strfmt("{:.2}", price) #num.update(c=> c+price)]
 }
 
 #let format_price() = context {
-  return strfmt("\${:.2}", num.get())
+return strfmt("\${:.2}", num.get())
 }
 
 #table(
-  columns: 2,
-  [*Name*], [*Price*],
-  [Cat Food], add_price(2.2),
-  [Dog Food], add_price(2.2),
-  [Rocket!], add_price(400),
-  table.cell(colspan: 2, fill: gray)[],
-  [Total], format_price()
+columns: 2,
+[*Name*], [*Price*],
+[Cat Food], add_price(2.2),
+[Dog Food], add_price(2.2),
+[Rocket!], add_price(400),
+table.cell(colspan: 2, fill: gray)[],
+[Total], format_price()
 )
 
 `}
-  name="math"
+name="math"
 />

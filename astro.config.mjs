@@ -86,7 +86,7 @@ export default defineConfig({
   vite: {
     plugins: [cloudflareRedirect()],
     ssr: {
-      external: ["node:url", "node:path", "node:child_process", "node:fs"],
+      external: ["node:url", "node:path", "node:child_process", "node:fs", "node:fs/promises"],
     },
   },
 });
