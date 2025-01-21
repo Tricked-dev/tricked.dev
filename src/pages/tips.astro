@@ -10,7 +10,8 @@ const resultList = await pb.collection("tips").getList(1, 500, {});
 
 <Layout>
   <section>
-    <h2>Epic Tricked tips</h2>
+    <h2 class="mb-0">Epic Tricked tips</h2>
+    <a href="/tips.rss" class="link link-hover link-primary">now also as rss</a>
     <div id="list">
       <Tips client:idle tips={resultList.items.toReversed()} />
     </div>
