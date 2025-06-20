@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import allNames from "../../public/allNames.json";
+import VirtualizedImages from "../components/VirtualizedImages.svelte";
 
 ---
 <Layout title="blogs" description="Blog articles i made :)">
@@ -36,15 +37,7 @@ import allNames from "../../public/allNames.json";
         display: block;
       }
     </style><section>
-      <ul>
-        {
-        allNames.map((name) => (
-          <li>
-            <img src={"https://bg.tricked.dev/" + name} alt={name} />
-          </li>
-        ))
-        }
-      </ul>
+      <VirtualizedImages images={allNames} client:visible />
     </section>
   </Layout>
   
