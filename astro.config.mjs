@@ -69,7 +69,11 @@ export default defineConfig({
   ],
   experimental: {},
   output: "hybrid",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   markdown: {
     remarkPlugins: [
       [
