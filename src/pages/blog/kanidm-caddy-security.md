@@ -7,7 +7,7 @@ heroImage: "/assets/ChatGPT Image Jul 12, 2025, 09_01_21 PM.png"
 ---
 
 
-In this example we will be securing esphome a well known application for creating esp32's that connect to homeassistant to provide sensor data and other type's of microcontroller shenigens, i will be hosting it on "esphome.tricked.dev" for this example
+In this example we will be securing esphome a well known application for creating esp32's that connect to homeassistant to provide sensor data and other type's of microcontroller shenanigan, i will be hosting it on "esphome.tricked.dev" for this example
 
 ```nginx
 {
@@ -57,7 +57,7 @@ In this example we will be securing esphome a well known application for creatin
 }
 ```
 
-Creating the application on the kanidm side
+Creating the application on the [kanidm](https://kanidm.com/) side
 
 ```
 kanidm system oauth2 create esphome
@@ -79,11 +79,11 @@ CRED_ESPHOME_SECRET=
 SHARED_SECRET=
 ```
 
-This was the complete effort of spending 5 (or many more) hours trying and researching things about caddy security and looking through caddy-security information
+This was the complete effort of spending 5 (or many more) hours trying and researching things about [caddy security](https://github.com/greenpau/caddy-security) and looking through [caddy-security](https://github.com/greenpau/caddy-security) information
 
 Creating a new application is as simple as changing the subdomain and copying the security configs again with a different name
 
 If you find any improvements to this setup after trying it out please do create a comment on this blog with the better solution
 
-A tiny pitfall is that when you do it this way if kanidm is running on the same server as caddy caddy-security will try to fetch the information about the openid connectors before caddy has fully started making it impossible to run them from the same server without some hacks (somehow skiupping tls veri and some other hurdles i came accross while going down that path), the alternative i used for this was that i was already running cloudflare tunnel that was redirecting all traffic to caddy so i made a extra rule for specifically kanidm to work without caddy in cloudflare zero trust.
+A tiny pitfall is that when you do it this way if kanidm is running on the same server as caddy caddy-security will try to fetch the information about the openid connectors before caddy has fully started making it impossible to run them from the same server without some hacks (somehow skipping tls verify and some other hurdles i came across while going down that path), the alternative i used for this was that i was already running cloudflare tunnel that was redirecting all traffic to caddy so i made a extra rule for specifically kanidm to work without caddy in cloudflare zero trust.
 ![alt text](/assets/zt-image.png)
