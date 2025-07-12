@@ -9,7 +9,7 @@ heroImage: "/assets/ChatGPT Image Jul 12, 2025, 09_01_21 PM.png"
 
 In this example we will be securing esphome a well known application for creating esp32's that connect to homeassistant to provide sensor data and other type's of microcontroller shenigens, i will be hosting it on "esphome.tricked.dev" for this example
 
-```caddyfile
+```nginx
 {
         order authenticate before respond
         order authorize before reverse_proxy
