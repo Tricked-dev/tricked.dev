@@ -6,6 +6,8 @@ pubDate: "Sep 27 2024"
 heroImage: "/assets/tricked.dev_wiki(Nest Hub).png"
 ---
 
+## update 13-07-2025: with the new daisyui and tailwind versions this no longer works i have not bothered to upgrade this to the new daisyui version yet 
+
 To use the new [starlight docs](https://starlight.astro.build/) with daisyui and make the colors integrate you only have to do a couple of things, first you obviously need daisyui and tailwindcss installed. `bunx astro add tailwind` then you will need to add daisyui to the tailwindcss config <https://daisyui.com/docs/install/> or in the `tailwind.config.mjs`
 
 ```js
