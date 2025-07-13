@@ -11,6 +11,7 @@ import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import themes from "./themes";
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 
 const site = "https://tricked.dev";
 
@@ -19,7 +20,11 @@ export default defineConfig({
   site: site,
   prefetch: true,
   integrations: [
-    expressiveCode(),
+    expressiveCode({
+      plugins: [
+        pluginCollapsibleSections()
+      ]
+    }),
     mdx({
       extendPlugins: false,
     }),
