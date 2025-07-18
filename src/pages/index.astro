@@ -32,16 +32,7 @@ import Layout from "../layouts/Layout.astro";
       <img src="/metrics" alt="Cool metrics lol" />
     </a>
   </div>
-  <div class="text-center">
-    <img
-      id="music"
-      src="https://music.tricked.dev/.svg"
-      loading="lazy"
-      decoding="async"
-      onerror="this.style.display='none'"
-      alt="currently playing music!"
-    />
-  </div>
+
   <script>
     const image = document.getElementById("music") as HTMLImageElement;
     // prevent caching and shit
