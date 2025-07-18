@@ -1,12 +1,15 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "Why i use ungoogled chromium instead of firefox"
+title: "[OLD] Why i use ungoogled chromium instead of firefox"
 description: "I use ungoogled-chromium instead of Firefox because it offers a privacy-focused, customizable, and open-source alternative to Chrome that is perfect for my needs."
 pubDate: "Dec 16 2022"
 heroImage: "/assets/3902989780_A big eye overseeing a bunch of people standing in_xl-beta-v2-2-2.png"
 ---
 
+:::warning
 ### update: 18-07-2025 - After learning more about privacy i'd urge you to avoid using ungoogled chromium and instead go with brave or hardened firefox with a userprofile see [browser privacy tests](https://privacytests.org/) for more information.
+:::
+
 
 As a privacy-conscious individual, I have always been careful about the personal data I share online and the tools I use to browse the web. When it comes to web browsers, I have tried many different options, but I have ultimately found that ungoogled-chromium is the best fit for my needs. Unlike Chrome, ungoogled-chromium is a version of the Chromium open-source browser that has been modified to remove certain features that transmit data to Google. This means that ungoogled-chromium values privacy and security over features that benefit Google.
 
