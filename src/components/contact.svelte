@@ -19,7 +19,7 @@
 
 <form
   id="contact"
-  class="my-4 mb-8"
+  class="my-4 mb-8 w-full"
   on:submit|preventDefault={async () => {
     await pb.collection("messages").create(data);
     window.alert("Successfully sent message");
@@ -76,7 +76,7 @@
     </div>
   </div>
 
-  <div class="form-control">
+  <div class="form-control w-full">
     <label class="label" for="message">
       <span class="label-text">Message</span>
     </label>
@@ -86,7 +86,7 @@
       name="message"
       required
       minlength="1"
-      placeholder="Yeah i bet you would send me a message"
+      placeholder="Message content idk"
       bind:value={data.message}
     />
   </div>

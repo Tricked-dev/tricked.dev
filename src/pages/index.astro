@@ -2,6 +2,15 @@
 import tech from "../../public/tech.json";
 import Contact from "../components/contact.svelte";
 import Layout from "../layouts/Layout.astro";
+
+// Get the latest 5 blog posts
+const posts = (await Astro.glob("./blog/*.{md,mdx}"))
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf()
+  )
+  .slice(0, 3);
 ---
 
 <Layout>
@@ -23,11 +32,50 @@ import Layout from "../layouts/Layout.astro";
         .slice(0, -1)
     }
   </p>
-  <div class="overflow-x-scroll">
+  <div>
     <Contact client:idle />
   </div>
   <!-- <Drawer client:idle /> -->
-  <div class="text-center">
+  <!-- Latest Blog Posts Section -->
+  <section class="mt-12">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold">Latest Blog Posts</h2>
+      <a href="/blog" class="link link-primary text-sm hover:underline">
+        View all posts →
+      </a>
+    </div>
+    
+    <div class="space-y-3">
+      {
+        posts.map((post) => (
+          <article class="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="card-body p-4">
+              <h3 class="card-title text-xl font-semibold mb-2">
+                <a href={post.url} class="hover:link-primary transition-colors">
+                  {post.frontmatter.title}
+                </a>
+              </h3>
+              <p class="text-sm text-base-content/70 line-clamp-1 mb-3">
+                {post.frontmatter.description}
+              </p>
+              <time 
+                datetime={post.frontmatter.pubDate}
+                class="text-xs text-base-content/60"
+              >
+                {new Date(post.frontmatter.pubDate).toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </time>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <div class="text-center mt-12">
     <a target="_blank" href="/sponsor">
       <img src="/metrics" alt="Cool metrics lol" />
     </a>
