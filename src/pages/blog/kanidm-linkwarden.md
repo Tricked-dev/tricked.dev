@@ -8,7 +8,7 @@ heroImage: "/assets/links.tricked.dev_login.png"
 
 Basically create a application (quick plug try: [using my kanidm web ui oauth2 manager](https://github.com/Tricked-dev/kanidm-oauth2-manager) for creating it instead) with legacy crypto enabled you can keep pkce on on linkwarden though and set the redirect url to "https://<linkwarden-instance>/api/v1/auth/callback/authentik"
 
-```
+```ini title=.env
 NEXT_PUBLIC_AUTHENTIK_ENABLED=true
 AUTHENTIK_CUSTOM_NAME="Kanidm"
 AUTHENTIK_ISSUER="https://<kanidm>/oauth2/openid/linkwarden"
