@@ -2,8 +2,8 @@
 layout: "../../layouts/BlogPost.astro"
 title: "Adding kanidm login to linkwarden"
 description: "Some quick info on adding kanidm login to linkwarden"
-pubDate: "Jul 13 2025"
-heroImage: "/assets/idm.tricked.dev_ui_login.png"
+pubDate: "Jul 22 2025"
+heroImage: "/assets/links.tricked.dev_login.png"
 ---
 
 Basically create a application (quick plug try: [using my kanidm web ui oauth2 manager](https://github.com/Tricked-dev/kanidm-oauth2-manager) for creating it instead) with legacy crypto enabled you can keep pkce on on linkwarden though and set the redirect url to "https://<linkwarden-instance>/api/v1/auth/callback/authentik"
