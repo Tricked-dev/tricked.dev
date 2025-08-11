@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro"
 title: "Kanidm and caddy security properly securing websites"
-description: "How to properly secure sites with kanidm and caddy security, creating different oauth2 applications per subdomain and seamless login"
+description: "How to properly secure sites with kanidm and caddy security (authcrunch), creating different oauth2 applications per subdomain and seamless login"
 pubDate: "Jul 12 2025"
 heroImage: "/assets/ChatGPT Image Jul 12, 2025, 09_01_21 PM.png"
 ---

@@ -10,7 +10,7 @@ export interface Props {
 }
 
 let { title, description, image = "/octopus.jpg" } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, "https://tricked.dev");
+const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', "https://tricked.dev");
 if (!title.includes(SITE_TITLE)) {
   title = `${title} - ${SITE_TITLE}`;
 }
@@ -44,7 +44,7 @@ if (!title.includes(SITE_TITLE)) {
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- Canonical URL -->
-<meta name="canonical" content={canonicalURL} />
+<link rel="canonical" href={canonicalURL.href} />
 
 <script is:inline>
   const syncTheme = () => {
