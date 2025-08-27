@@ -5,6 +5,7 @@ import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
+import { rehypeImagePreview } from "./src/plugins/rehype-image-preview.ts";
 import rss from '@astrojs/rss';
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
@@ -89,7 +90,7 @@ export default defineConfig({
         },
       ],
     ],
-    rehypePlugins: [[rehypeSlug, {}]],
+    rehypePlugins: [[rehypeSlug, {}], [rehypeImagePreview, {}]],
   },
   trailingSlash: "ignore",
   vite: {

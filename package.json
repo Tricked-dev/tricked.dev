@@ -31,13 +31,14 @@
     "sass": "^1.83.4",
     "svelte": "^4.2.19",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3",
+    "typescript": "^5",
+    "unist-util-visit": "^5.0.0",
     "vite-plugin-cloudflare-redirect": "^0.1.2",
     "wrangler": "^4.20.5"
   },
   "devDependencies": {
-    "prettier": "^3.4.2",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/hast": "^3.0.4"
   },
   "peerDependencies": {
     "typescript": "^5"

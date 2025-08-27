@@ -87,11 +87,11 @@ const {
       }
     </style>
   }
-
-
-  <a
-    href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
+  {!file.endsWith("about.md") && (
+    <a 
+      href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
       .split("/")
-      .at(-1)}`}>View on Github</a
-  >
+      .at(-1)}`}>View on Github</a>)
+  }
+
 </Layout>
