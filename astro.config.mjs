@@ -1,18 +1,16 @@
 import cloudflare from "@astrojs/cloudflare";
-import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
-import { defineConfig } from "astro/config";
-import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
-import rehypeSlug from "rehype-slug";
-import remarkToc from "remark-toc";
-import { rehypeImagePreview } from "./src/plugins/rehype-image-preview.ts";
-import rss from '@astrojs/rss';
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
-import themes from "./themes";
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
+import expressiveCode from "astro-expressive-code";
+import { defineConfig } from "astro/config";
+import rehypeSlug from "rehype-slug";
+import remarkToc from "remark-toc";
+import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
+import { rehypeImagePreview } from "./src/plugins/rehype-image-preview.ts";
 
 const site = "https://tricked.dev";
 

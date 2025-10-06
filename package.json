@@ -22,7 +22,7 @@
     "@expressive-code/plugin-collapsible-sections": "^0.41.3",
     "astro": "4.13.1",
     "astro-expressive-code": "^0.41.3",
-    "caniuse-lite": "^1.0.30001727",
+    "caniuse-lite": "^1.0.30001747",
     "daisyui": "^4.12.23",
     "pocketbase": "^0.21.5",
     "rehype-slug": "^6.0.0",
