@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Using luajit with mpv"
 description: "Information about my mpv config"
 pubDate: "Dec 23 2025"
-heroImage: "/assets/links.tricked.dev_login.png"
+heroImage: "/assets/screenshot_20251215_182606.png"
 ---
 
 After trying to run jpdb.io mpv plugin which works very well on archlinux etc but on nixos installing it is a bit more trouble as it requires luajit to function youll need to install the mpv package differently
@@ -51,7 +51,7 @@ Seeing as im talking about my mpv config already heres my current config at the 
 { pkgs, lib, ... }:
 
 let
-  # Anime4k youll see this one a couple of times during this config but essentially improves the quality of most 1080p anime to look much better after pressing ctrl+1 
+  # Anime4k youll see this one a couple of times during this config but essentially improves the quality of most 1080p anime to look much better after pressing ctrl+1
   # Anime4K shader paths
   anime4kPath = "${pkgs.anime4k}";
 
@@ -173,6 +173,8 @@ in
           # modernz
           thumbfast
           mpv-cheatsheet
+          # Only working video encoder plugin i found lmfao
+          occivink.encode
         ];
         # libraries for jpdb
         extraMakeWrapperArgs = [
@@ -183,6 +185,10 @@ in
             pkgs.wayland
             pkgs.libxkbcommon
           ]}"
+          "--prefix"
+          "PATH"
+          ":"
+          "${lib.makeBinPath [ pkgs.ffmpeg-full ]}"
         ];
       };
 
@@ -191,20 +197,24 @@ in
       # Screenshot settings
       screenshot-format = "png";
       screenshot-high-bit-depth = "yes";
-
       # Playback settings
       autoload-files = "yes";
       keep-open = "no";
       playlist-start = "auto";
-
+      vo = "gpu-next";
       # GLSL shaders (Anime4K) - Default Mode A
       glsl-shaders = anime4kModes."1".shaders;
     };
 
     # Key bindings
     bindings = anime4kBindings // {
-      # Clear shaders
+      # Clear shaders / ctrl+1 to enable
       "CTRL+0" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
+      # Encode script keybindings
+      "e" = "script-message-to encode set-timestamp";
+      # Press this once to set starting press again to set ending section then itll start encoding in background
+      "alt+e" = "script-message-to encode set-timestamp encode_webm";
+      "E" = "script-message-to encode set-timestamp encode_slice";
     };
   };
 
@@ -212,6 +222,43 @@ in
     screenshot-directory=/home/tricked/Backgrounds
     # Dont screenshot subtitles
     screenshot-sw=yes
+  '';
+
+  xdg.configFile."mpv/script-opts/encode.conf".text = ''
+    only_active_tracks=no
+    preserve_filters=no
+    append_filter=
+    codec=-c copy
+    output_format=$f_$n.$x
+    output_directory=
+    detached=yes
+    ffmpeg_command=ffmpeg
+    print=yes
+  '';
+
+  # I only use this config but the others might work :)
+  xdg.configFile."mpv/script-opts/encode_webm.conf".text = ''
+    only_active_tracks=yes
+    preserve_filters=no
+    append_filter=
+    codec=-c:v libvpx -crf 10 -b:v 2M -quality best -auto-alt-ref 0 -c:a libvorbis -b:a 128k -c:s webvtt
+    output_format=$f_$n.webm
+    output_directory=
+    detached=yes
+    ffmpeg_command=ffmpeg
+    print=yes
+  '';
+
+  xdg.configFile."mpv/script-opts/encode_slice.conf".text = ''
+    only_active_tracks=yes
+    preserve_filters=no
+    append_filter=
+    codec=-vaapi_device /dev/dri/renderD128 -vf 'format=nv12,hwupload' -c:v h264_vaapi -b:v 5M -c:a copy
+    output_format=$f_$n.mp4
+    output_directory=
+    detached=yes
+    ffmpeg_command=ffmpeg
+    print=yes
   '';
 
   # Add anime4k package to system packages
