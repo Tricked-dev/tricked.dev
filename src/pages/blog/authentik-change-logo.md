@@ -3,12 +3,13 @@ layout: "../../layouts/BlogPost.astro"
 title: "Change authentik logo/branding"
 description: "A simple guide on how to change the logo / branding on a Authentik installation"
 pubDate: "April 20 2024"
+updatedDate: "Dec 23 2025
 heroImage: "/assets/themed_authentik.png"
 ---
 
 ## Introduction
 
-Authentik by default uses the authentik logo while logging in and mentions authentik in the login screen too, Changing this can be done fairly easily and can improve the user experience.
+Authentik by default uses the Authentik logo while logging in and mentions Authentik in the login screen too, Changing this can be done fairly easily and can improve the user experience.
 
 ## Changing the text in the login screen
 
@@ -18,7 +19,7 @@ Go to `admin interface > Flows and Stages > Flows` (/if/admin/#/flow/flows) and 
 
 After this hit update and do it for the other one and that should be changed now.
 
-## Changing the icon
+## Changing the icon & CSS
 
 Changing the icons is a bit more involved it requires you to edit the `docker-compose.yml` to mount the new images
 
@@ -39,13 +40,4 @@ favicon: `/static/dist/assets/icons/icon.png`
 
 You can also change the title here to something else than Authentik
 
-## Bonus: Styling Authentik
-
-```yml
-volumes:
-  - ./media:/media
-  - ./custom-templates:/templates
-  - ./branding/custom.css:/web/dist/custom.css
-```
-
-Create a `branding/custom.css` file and add any custom css you want [This authentik discussion](https://github.com/goauthentik/authentik/discussions/4831) has some more info on what css classes you can use and maybe a good starting point css file. After restarting authentik once the new css should be applied open dev tools to disable caching of http requests and you can edit the css file and you just have to reload for it to update.
+Styling with custom css can also be done in the brands section `admin interface > System > Brands > Custom CSS`, you no longer need to mount a custom.css. You can view [This authentik discussion](https://github.com/goauthentik/authentik/discussions/4831) for some inspiration on what you can do with custom css

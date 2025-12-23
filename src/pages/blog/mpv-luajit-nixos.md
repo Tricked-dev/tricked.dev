@@ -6,7 +6,7 @@ pubDate: "Dec 23 2025"
 heroImage: "/assets/screenshot_20251215_182606.png"
 ---
 
-After trying to run jpdb.io mpv plugin which works very well on archlinux etc but on nixos installing it is a bit more trouble as it requires luajit to function youll need to install the mpv package differently
+After trying to run the jpdb.io mpv plugin which works very well on Arch Linux etc., but on NixOS installing it is a bit more trouble as it requires LuaJIT to function, you'll need to install the mpv package differently
 
 ```nix
 {
@@ -29,7 +29,7 @@ After trying to run jpdb.io mpv plugin which works very well on archlinux etc bu
 }
 ```
 
-But that sadly still wasnt enough to run the plugin on my system cause i was missing some libraries that the rust binary of the jpdb plugin required, to run the installer you'll also need these dependencies in your library path fyi
+But that sadly still wasn't enough to run the plugin on my system because I was missing some libraries that the Rust binary of the jpdb plugin required. To run the installer, you'll also need these dependencies in your library path FYI
 
 ```nix
  extraMakeWrapperArgs = [
@@ -45,13 +45,13 @@ But that sadly still wasnt enough to run the plugin on my system cause i was mis
 
 After that it worked flawlessly
 
-Seeing as im talking about my mpv config already heres my current config at the time of writing this article with all the tweaks made to it commented on why and what/
+Seeing as I'm talking about my mpv config already, here's my current config at the time of writing this article with all the tweaks made to it commented on why and what.
 
 ```nix
 { pkgs, lib, ... }:
 
 let
-  # Anime4k youll see this one a couple of times during this config but essentially improves the quality of most 1080p anime to look much better after pressing ctrl+1
+  # Anime4K you'll see this one a couple of times during this config but essentially improves the quality of most 1080p anime to look much better after pressing ctrl+1
   # Anime4K shader paths
   anime4kPath = "${pkgs.anime4k}";
 
@@ -164,7 +164,7 @@ in
       mpvWithLuajit.wrapper {
         mpv = mpvWithLuajit;
         scripts = with pkgs.mpvScripts; [
-          # KDE connnect & system integration
+          # KDE Connect & system integration
           mpris
           # Binge Binge Binge Binge
           autoload
@@ -220,7 +220,7 @@ in
 
   xdg.configFile."mpv/mpv.conf".text = ''
     screenshot-directory=/home/tricked/Backgrounds
-    # Dont screenshot subtitles
+    # Don't screenshot subtitles
     screenshot-sw=yes
   '';
 
