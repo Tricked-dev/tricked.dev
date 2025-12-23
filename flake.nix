@@ -21,6 +21,9 @@
             pkgs.bun
             pkgs.nodejs
           ];
+          shellHook = ''
+            export BROWSERSLIST_IGNORE_OLD_DATA=1
+          '';
         };
       }
     );
