@@ -1,6 +1,6 @@
 ---
-import { getData } from "./projects.json";
 import Layout from "../layouts/Layout.astro";
+import { getData } from "./projects.json";
 const projects = await getData();
 ---
 
@@ -20,8 +20,12 @@ const projects = await getData();
           .map((project) => {
             return (
               <div>
-                <div class="bg-base-300 my-2 text-center">
-                  <h3 class="mb-0 font-semibold text-lg">{project.name}</h3>
+                <div class="bg-base-300 my-2 text-center no-underline border-b-0 ring-0">
+                  <a
+                    href={project.website ?? project.homepageUrl ?? project.url}
+                  >
+                    <h3 class="mb-0 font-semibold text-lg">{project.name}</h3>
+                  </a>
                   <p class="m-0">{project.description}</p>
                 </div>
                 <a href={project.website ?? project.homepageUrl ?? project.url}>

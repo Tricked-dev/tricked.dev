@@ -8,6 +8,11 @@ const projects = [
     bits: 0b11,
   },
   {
+    repo: "tricked-dev/SolidVerdant",
+    image: url + "assets/screenshot_20251223_214341.png",
+    bits: 0b111,
+  },
+  {
     repo: "tricked-dev/lowestbins",
     website: "https://lb.tricked.pro",
     description: "An game api that serves around 30k people daily",
@@ -38,7 +43,6 @@ const projects = [
     description:
       "A fast image uploader made for all platforms. It has a home made desktop application written in rust",
     timestart: "01-07-2021",
-    bits: 0b111,
   },
   {
     name: "Aethor",
@@ -73,12 +77,11 @@ const projects = [
 let query = `
 {
 ${projects
-  .filter((x) => x.repo)
-  .map(
-    (x) =>
-      `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${
-        x.repo?.split("/")[0]
-      }", name: "${x.repo?.split("/")[1]}") {
+    .filter((x) => x.repo)
+    .map(
+      (x) =>
+        `  ${x.repo?.split("/")[1]?.replaceAll("-", "_")}: repository(owner: "${x.repo?.split("/")[0]
+        }", name: "${x.repo?.split("/")[1]}") {
     description
     name
     stargazerCount
@@ -97,8 +100,8 @@ ${projects
     }
   }
 `
-  )
-  .join("")}}
+    )
+    .join("")}}
 `;
 
 let result: any[];

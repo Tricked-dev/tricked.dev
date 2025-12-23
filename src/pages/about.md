@@ -2,7 +2,7 @@
 layout: "../layouts/BlogPost.astro"
 title: "About Me"
 description: "Information about me!"
-updatedDate: "August 27 2025"
+updatedDate: "Dec 23 2025"
 heroImage: "/assets/4122343113_A white husky looking out of a bedroom window, atm_xl-beta-v2-2-2.png"
 about: true
 ---
@@ -19,11 +19,13 @@ Hi there! My name is Tricked and I am a software developer from the Netherlands 
 
 Since then, I have gained experience in building a wide range of applications, including websites, user applications, and backends. I am currently focusing on using Rust & Typescript using svelte for frontend for most of my projects, Open to use other languages when best suited or required for a contribution.
 
-I am currently working 4 days per week at a C# & Azure company.
+I am currently working 4 days per week at a C# & Azure Company, UPDATE December 2023: we are now pivoting to databricks & datawarehouses so i guess im a python dev now although most work is in requirements and shit.
 
 ### Other interests
 
-Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer do some soldering sometimes, create custom 3d designs using Fusion360, hack around with a flipper zero and play automation games like Factorio and modded Minecraft.
+Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer do some soldering sometimes, create custom 3d designs using Fusion360, hack around with a flipper zero and play automation games like Factorio and modded Minecraft (GTNH lol).
+
+Around every christmas i also do a modded Terraria Calamity playthrough with a couple other friends
 
 Favorite "maker" projects i made:
 - Created a printing library for a thermal [label printer](https://github.com/Tricked-dev/printer-livestream) and hooked it up to a twitch live stream
@@ -36,8 +38,11 @@ My main hobby next to development is selfhosting, I enjoy finding new projects o
 
 Through this i learned everything from networking to linux tooling & containers
 
+I recently switched my entire homelab from fedora to NixOS and have been having too much fun trying to do everything in the nix language and getting everything uniform it all working great though now!
+
 ### Long terms goals
 
 - Get drivers license
 - Move to Amsterdam
 - Get rich
+- Own ram
