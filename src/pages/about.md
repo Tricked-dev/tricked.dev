@@ -23,7 +23,7 @@ I am currently working 4 days per week at a C# & Azure Company, UPDATE December 
 
 ### Other interests
 
-Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer do some soldering sometimes, create custom 3d designs using Fusion360, hack around with a flipper zero and play automation games like Factorio and modded Minecraft (GTNH lol).
+Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer do some soldering sometimes, create custom 3d designs using Fusion360, hack around with a flipper zero and play automation games like Factorio and modded Minecraft (GTNH lol). Oh and i also recently got a Meshtastic device too bad theres not much activity around my area keeping my node online and hoping for the best in the near future though
 
 Around every christmas i also do a modded Terraria Calamity playthrough with a couple other friends
 
