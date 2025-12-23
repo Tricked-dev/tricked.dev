@@ -32,6 +32,23 @@ Favorite "maker" projects i made:
 - Created driver for another label printer with a display to print their printing language from my console & linux and made it display a rickroll on the internal printer display
 - Created a [Wled light panels](/assets/PXL_20250331_125406114.jpg#preview) that turn on and off depending on the state of my machine
 
+---
+
+And of-course Anime and Manhwa shows i recently watched and enjoyed and are not Frieren, JJK, and rezero lol:
+- Eminence in shadow
+- Bocchie The Rock
+- A certain scientific railgun
+- Apothocary diaries
+- And of-course the entire EVA franchise !!
+Currently also learning 日本 as you can probably notice from my latest blog post at the time maybe i'll watch some unique stuff after i get a hand on it
+
+Tbf these all above are still in most top 100 lists but nevertheless a bit more unique
+Now manhwa:
+- The Greatest estate developer
+- The beginning after the end
+- Omniscient reader
+- SSS-Class revival hunter
+These are even less unique but im guessing youve never read a manhwa so these are a good starting point :\)
 #### Selfhosting
 
 My main hobby next to development is selfhosting, I enjoy finding new projects on github and putting them on my server at home to use for my own needs, for example im hosting [Kanidm](https://github.com/kanidm/kanidm) as login shield for almost all my services the latest service i am selfhosting is [linkwarden](https://github.com/linkwarden/linkwarden). [Immich](https://github.com/immich-app/immich) is by far my favorite selfhosted service though.
@@ -46,3 +63,5 @@ I recently switched my entire homelab from fedora to NixOS and have been having 
 - Move to Amsterdam
 - Get rich
 - Own ram
+---
+I am committing to updating this page at-least once a year with more stuff and renovating old sections, Reminder that i am a real person and open to connections on every linked platform above :D
