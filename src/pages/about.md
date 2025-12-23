@@ -40,6 +40,7 @@ And of-course Anime and Manhwa shows i recently watched and enjoyed and are not 
 - A certain scientific railgun
 - Apothocary diaries
 - And of-course the entire EVA franchise !!
+
 Currently also learning 日本 as you can probably notice from my latest blog post at the time maybe i'll watch some unique stuff after i get a hand on it
 
 Tbf these all above are still in most top 100 lists but nevertheless a bit more unique
