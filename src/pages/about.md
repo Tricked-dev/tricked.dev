@@ -19,7 +19,7 @@ Hi there! My name is Tricked and I am a software developer from the Netherlands 
 
 Since then, I have gained experience in building a wide range of applications, including websites, user applications, and backends. I am currently focusing on using Rust & Typescript using svelte for frontend for most of my projects, Open to use other languages when best suited or required for a contribution.
 
-I am currently working 4 days per week at a C# & Azure Company, UPDATE December 2023: we are now pivoting to databricks & datawarehouses so i guess im a python dev now although most work is in requirements and shit.
+I am currently working 4 days per week at a C# & Azure Company, UPDATE December 2025: we are now pivoting to databricks & datawarehouses so i guess im a python dev now although most work is in requirements and shit.
 
 ### Other interests
 
