@@ -11,6 +11,7 @@ export interface Props {
     updatedDate?: string;
     heroImage?: string;
     about: boolean;
+    wide: boolean;
   };
 }
 
@@ -36,14 +37,16 @@ const {
   <article>
     {
       heroImage && (
-        <img
-          transition:name={url}
-          class="max-h-[25rem] mx-auto object-scale-down"
-          width={720}
-          height={360}
-          src={heroImage}
-          alt=""
-        />
+        <a href={heroImage} target="_blank" rel="noopener noreferrer" class="hero-image-link block">
+          <img
+            transition:name={url}
+            class="max-h-[25rem] mx-auto object-scale-down cursor-pointer hover:opacity-80 transition-opacity"
+            width={720}
+            height={360}
+            src={heroImage}
+            alt=""
+          />
+        </a>
       )
     }
     <h1 class="title" transition:name={heroImage ? "" : url}>{title}</h1>
@@ -77,7 +80,11 @@ const {
         data-loading="lazy"
         crossorigin="anonymous"
         async
+        id="giscus"
       />
+      <a href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
+      .split("/")
+      .at(-1)}`}>View on Github</a>
     )
   }
   {wide &&
@@ -87,11 +94,226 @@ const {
       }
     </style>
   }
-  {!file.endsWith("about.md") && (
-    <a 
-      href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
-      .split("/")
-      .at(-1)}`}>View on Github</a>)
-  }
+
+
+  <script>
+    // Track if giscus is ready
+    let giscusReady = false;
+
+    // Giscus theme synchronization
+    function syncGiscusTheme() {
+      if (!giscusReady) return;
+
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const giscusTheme = theme === 'light' ? 'light' : 'dark';
+
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe || !iframe.contentWindow) return;
+
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: giscusTheme } } },
+        'https://giscus.app'
+      );
+    }
+
+    // Listen for messages from giscus
+    function handleGiscusMessage(event) {
+      if (event.origin !== 'https://giscus.app') return;
+      if (!(typeof event.data === 'object' && event.data.giscus)) return;
+
+
+      giscusReady = true;
+      syncGiscusTheme();
+    }
+
+    window.addEventListener('message', handleGiscusMessage);
+
+    // Listen for theme changes by watching the data-theme attribute on <html>
+    const themeObserver = new MutationObserver(() => {
+      syncGiscusTheme();
+    });
+
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    // Image enlargement functionality
+    function setupImageModal() {
+      const heroImageLink = document.querySelector('.hero-image-link');
+      if (!heroImageLink) return;
+
+      heroImageLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(document.querySelector(".image-modal")) return;
+        const imgSrc = heroImageLink.getAttribute('href');
+
+        // Create modal overlay
+        const modal = document.createElement('div');
+        modal.className = 'image-modal';
+        modal.innerHTML = `
+          <div class="image-modal-overlay"></div>
+          <div class="image-modal-content">
+            <button class="image-modal-close" aria-label="Close">&times;</button>
+            <a href="${imgSrc}" target="_blank" rel="noopener noreferrer" class="image-modal-link">
+              <img src="${imgSrc}" alt="Enlarged view" />
+            </a>
+            <div class="image-modal-hint">Click image to open in new tab • Click outside to close • Press ESC</div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+
+        // Close on overlay click, close button, or escape key
+        const closeModal = () => {
+          modal.classList.add('closing');
+          setTimeout(() => {
+            document.body.removeChild(modal);
+            document.body.style.overflow = '';
+          }, 200);
+        };
+
+        modal.addEventListener('click', (e) => {
+          // Close if clicking on the modal itself, overlay, or content area, but not the image link
+          if (e.target === modal || e.target.classList.contains('image-modal-overlay') || e.target.classList.contains('image-modal-content')) {
+            closeModal();
+          }
+        });
+        modal.querySelector('.image-modal-close').addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', function escHandler(e) {
+          if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+          }
+        });
+
+        // Fade in animation
+        setTimeout(() => modal.classList.add('active'), 10);
+      });
+    }
+
+    // Run on initial load
+    setupImageModal();
+
+    // Run on view transitions navigation
+    document.addEventListener('astro:page-load', () => {
+      setupImageModal();
+    });
+  </script>
+
+  <style is:global>
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10000;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-modal.active {
+      opacity: 1;
+    }
+
+    .image-modal.closing {
+      opacity: 0;
+    }
+
+    .image-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+    }
+
+    .image-modal-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .image-modal-link {
+      display: block;
+      line-height: 0;
+    }
+
+    .image-modal-content img {
+      display: block;
+      max-width: calc(100vw - 8rem);
+      max-height: calc(100vh - 8rem);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-modal-content img:hover {
+      opacity: 0.9;
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      transition: background 0.2s ease;
+      z-index: 1;
+    }
+
+    .image-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .image-modal-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.875rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      pointer-events: none;
+      animation: fadeInHint 0.3s ease 0.5s both;
+    }
+
+    @keyframes fadeInHint {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(0.5rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  </style>
 
 </Layout>
