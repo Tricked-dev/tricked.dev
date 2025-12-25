@@ -111,4 +111,28 @@ pre {
   --sl-color-gray-5: color-mix(in oklch, var(--bg) 70%, var(--text) 30%);
   --sl-color-gray-6: color-mix(in oklch, var(--bg) 90%, var(--text) 10%);
   --sl-color-black: oklch(var(--b1) / 1);
+  --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Circle blur theme transition effect - only apply during theme changes */
+.theme-transition::view-transition-group(root) {
+  animation-timing-function: var(--expo-out);
+}
+
+.theme-transition::view-transition-new(root) {
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="50%25" fill="black" filter="url(%23blur)"/></svg>') 0 0 / 0 no-repeat;
+  animation: scale-up 1s;
+  animation-fill-mode: both;
+}
+
+.theme-transition::view-transition-old(root) {
+  animation: none;
+  animation-fill-mode: both;
+  z-index: -1;
+}
+
+@keyframes scale-up {
+  to {
+    mask-size: 350vmax;
+  }
 }

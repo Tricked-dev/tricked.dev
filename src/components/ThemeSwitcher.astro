@@ -34,10 +34,24 @@
 
   /** Update select menu UI, document theme, and local storage state. */
   function onThemeChange(theme: Theme): void {
-    //@ts-ignore
-    StarlightThemeProvider.updatePickers(theme);
-    document.documentElement.dataset.theme = theme;
-    storeTheme(theme);
+    const updateTheme = () => {
+      //@ts-ignore
+      StarlightThemeProvider.updatePickers(theme);
+      document.documentElement.dataset.theme = theme;
+      storeTheme(theme);
+    };
+
+    if (!document.startViewTransition) {
+      updateTheme();
+      return;
+    }
+
+    // Add a class to identify theme transitions
+    document.documentElement.classList.add('theme-transition');
+    const transition = document.startViewTransition(updateTheme);
+    transition.finished.finally(() => {
+      document.documentElement.classList.remove('theme-transition');
+    });
   }
 
   // React to changes in system color scheme.
