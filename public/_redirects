@@ -9,8 +9,12 @@
 /discord https://discord.gg/hkS3YDh
 /ko-fi https://ko-fi.com/tricked
 
+/feed /rss.xml
+/feed.rss /rss.xml
 /atom /rss.xml
 /atom.xml /rss.xml
+/blog/atom.xml /rss.xml
+/blog/rss.xml /rss.xml
 /sitemap.xml /sitemap-0.xml
 
 /aethor https://aethor.xyz
@@ -27,3 +31,25 @@
 /bing https://youtu.be/RkBtTtaZZQg
 
 /metrics https://raw.githubusercontent.com/Tricked-dev/Tricked-dev/main/metrics.base.svg
+
+# Asset redirects
+# Brave uncrypto guide
+/braving/Screenshot_20230817_221525.png /assets/uncrypto-brave-guide/final-result.png 301
+/braving/Screenshot_20230817_221416.png /assets/uncrypto-brave-guide/start.png 301
+/braving/Screenshot_20230817_214917.png /assets/uncrypto-brave-guide/customize-menu.png 301
+/braving/Screenshot_20230817_215929.png /assets/uncrypto-brave-guide/scrolled-down.png 301
+/braving/Screenshot_20230817_215945.png /assets/uncrypto-brave-guide/top-sites-disabled.png 301
+/braving/Screenshot_20230817_220021.png /assets/uncrypto-brave-guide/cards-off.png 301
+/braving/Screenshot_20230817_220037.png /assets/uncrypto-brave-guide/exit-scroll.png 301
+/braving/Screenshot_20230817_220045.png /assets/uncrypto-brave-guide/turn-off-extra.png 301
+/braving/Screenshot_20230817_220122.png /assets/uncrypto-brave-guide/rewards-off.png 301
+/braving/Screenshot_20230817_214935.png /assets/uncrypto-brave-guide/extra.png 301
+/braving/Screenshot_20230817_215831.png /assets/uncrypto-brave-guide/extra2.png 301
+/braving/1232023-08-17_21-52-30.mp4 /assets/uncrypto-brave-guide/guide-video.mp4 301
+
+# Blog images
+/img/blog/active-developer.png /assets/active-developer-badge.png 301
+
+# Media files
+/meida/bad_piggies_drip%20_dkM9GxaCow4.mp3 /assets/bad-piggies-drip.mp3 301
+/meida/bad_piggies_drip _dkM9GxaCow4.mp3 /assets/bad-piggies-drip.mp3 301

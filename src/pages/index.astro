@@ -1,5 +1,4 @@
 ---
-import tech from "../../public/tech.json";
 import Contact from "../components/contact.svelte";
 import Layout from "../layouts/Layout.astro";
 
@@ -23,7 +22,11 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
     discuss the latest industry trends, and share tips and insights on
     programming and technology. Thank you for visiting!
   </p>
-  <p
+  <p>
+    See my <a href="/about">About me page</a> for more info about <bold
+      >me</bold>
+  </p>
+  <!-- <p
     class="text-sm text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary"
   >
     {
@@ -31,7 +34,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
         .flatMap((x) => [<span>{x}</span>, ", "])
         .slice(0, -1)
     }
-  </p>
+  </p> -->
   <div>
     <Contact client:idle />
   </div>
@@ -44,7 +47,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
         View all posts →
       </a>
     </div>
-    
+
     <div class="space-y-3">
       {
         posts.map((post) => (
@@ -58,15 +61,18 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
               <p class="text-sm text-base-content/70 line-clamp-1 mb-3">
                 {post.frontmatter.description}
               </p>
-              <time 
+              <time
                 datetime={post.frontmatter.pubDate}
                 class="text-xs text-base-content/60"
               >
-                {new Date(post.frontmatter.pubDate).toLocaleDateString("en-us", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
+                {new Date(post.frontmatter.pubDate).toLocaleDateString(
+                  "en-us",
+                  {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  }
+                )}
               </time>
             </div>
           </article>
