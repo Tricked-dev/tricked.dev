@@ -131,6 +131,13 @@ const {
     // Listen for theme changes by watching the data-theme attribute on <html>
     const themeObserver = new MutationObserver(() => {
       syncGiscusTheme();
+      let themeMap = {
+        dark: "ayu-dark",
+        black: "aurora-x",
+        light: "catppuccin-latte",
+      };
+
+      document.documentElement.dataset.extheme = themeMap[document.documentElement.dataset.theme];
     });
 
     themeObserver.observe(document.documentElement, {

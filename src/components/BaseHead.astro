@@ -10,7 +10,10 @@ export interface Props {
 }
 
 let { title, description, image = "/octopus.jpg" } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', "https://tricked.dev");
+const canonicalURL = new URL(
+  Astro.url.pathname.replace(/\/$/, "") || "/",
+  "https://tricked.dev"
+);
 if (!title.includes(SITE_TITLE)) {
   title = `${title} - ${SITE_TITLE}`;
 }
@@ -47,39 +50,39 @@ if (!title.includes(SITE_TITLE)) {
 <link rel="canonical" href={canonicalURL.href} />
 
 <script is:inline>
-  const syncTheme = () => {
-    let theme = localStorage.getItem("starlight-theme");
+const syncTheme = () => {
+  let theme = localStorage.getItem("starlight-theme");
 
-    if (theme) {
-      document.documentElement.dataset.theme = theme;
-    }
-  };
-
-  syncTheme();
-  document.addEventListener("astro:after-swap", syncTheme);
-
-  window.StarlightThemeProvider = (() => {
-    const storedTheme =
-      typeof localStorage !== "undefined" &&
-      localStorage.getItem("starlight-theme");
-    const theme =
-      storedTheme ||
-      (window.matchMedia("(prefers-color-scheme: light)").matches
-        ? "light"
-        : "dark");
-
+  if (theme) {
     document.documentElement.dataset.theme = theme;
-    return {
-      updatePickers(theme = storedTheme || "dark") {
-        document
-          .querySelectorAll("starlight-theme-select")
-          .forEach((picker) => {
-            const select = picker.querySelector("select");
-            if (select) select.value = theme;
-          });
-      },
-    };
-  })();
+  }
+};
+
+syncTheme();
+document.addEventListener("astro:after-swap", syncTheme);
+
+window.StarlightThemeProvider = (() => {
+  const storedTheme =
+    typeof localStorage !== "undefined" &&
+    localStorage.getItem("starlight-theme");
+  const theme =
+    storedTheme ||
+    (window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark");
+
+  document.documentElement.dataset.theme = theme;
+  return {
+    updatePickers(theme = storedTheme || "dark") {
+      document
+        .querySelectorAll("starlight-theme-select")
+        .forEach((picker) => {
+          const select = picker.querySelector("select");
+          if (select) select.value = theme;
+        });
+    },
+  };
+})();
 </script>
 
 <ViewTransitions />

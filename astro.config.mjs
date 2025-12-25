@@ -22,7 +22,9 @@ export default defineConfig({
     expressiveCode({
       plugins: [
         pluginCollapsibleSections()
-      ]
+      ],
+      themeCssSelector: (theme) => `[data-extheme='${theme.name}']`,
+      themes: ['aurora-x', "ayu-dark", 'catppuccin-latte'],
     }),
     mdx({
       extendPlugins: false,
