@@ -18,6 +18,9 @@ const site = "https://tricked.dev";
 export default defineConfig({
   site: site,
   prefetch: true,
+  build: {
+    assets: 'bloat',
+  },
   integrations: [
     expressiveCode({
       plugins: [

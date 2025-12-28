@@ -9,7 +9,7 @@ export interface Props {
   image?: string;
 }
 
-let { title, description, image = "/octopus.jpg" } = Astro.props;
+let { title, description, image = "/media/octopus.jpg" } = Astro.props;
 const canonicalURL = new URL(
   Astro.url.pathname.replace(/\/$/, "") || "/",
   "https://tricked.dev"
@@ -46,8 +46,9 @@ if (!title.includes(SITE_TITLE)) {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL.href} />
+
+<link rel="preconnect" href="https://tricked.dev" crossorigin />
 
 <script is:inline>
 const syncTheme = () => {
