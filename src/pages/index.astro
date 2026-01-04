@@ -23,8 +23,8 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
     programming and technology. Thank you for visiting!
   </p>
   <p>
-    See my <a href="/about">About me page</a> for more info about <bold
-      >me</bold>
+    See my <a href="/about">About me page</a> for more info about <bold>me</bold
+    >
   </p>
   <!-- <p
     class="text-sm text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary"
@@ -35,9 +35,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
         .slice(0, -1)
     }
   </p> -->
-  <div>
-    <Contact client:idle />
-  </div>
+
   <!-- <Drawer client:idle /> -->
   <!-- Latest Blog Posts Section -->
   <section class="mt-12">
@@ -78,6 +76,9 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
           </article>
         ))
       }
+    </div>
+    <div>
+      <Contact client:idle />
     </div>
   </section>
 

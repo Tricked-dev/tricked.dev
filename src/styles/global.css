@@ -24,6 +24,7 @@ body {
   overflow-wrap: break-word;
   line-height: 1.5;
 }
+
 h1,
 h2,
 h3,
@@ -35,52 +36,68 @@ b {
   /* @apply text-secondary duration-200 */
 }
 
-.sl-markdown-content
-  figure
-  :not(a, strong, em, del, span, input, code)
-  + :not(a, strong, em, del, span, input, code, :where(.not-content *)) {
+.sl-markdown-content figure :not(a, strong, em, del, span, input, code)+ :not(a, strong, em, del, span, input, code, :where(.not-content *)) {
   margin-top: 0rem !important;
 }
+
 a:hover {
   @apply text-secondary duration-200;
 }
+
 nav a {
   margin-right: 10px;
 }
+
 textarea {
   width: 100%;
   font-size: 16px;
 }
+
 input {
   font-size: 16px;
 }
+
 content {
   line-height: 1.6;
 }
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
 }
+
 code {
   @apply bg-base-200;
   padding: 2px 5px;
 }
+
 pre {
   padding: 1rem;
 }
-pre > code {
+
+pre>code {
   all: unset;
 }
 
+body {
+  min-height: min(100vh, 50rem);
+}
+
 pre {
-  white-space: pre-wrap; /* Since CSS 2.1 */
-  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-  white-space: -pre-wrap; /* Opera 4-6 */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  white-space: pre-wrap;
+  /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* Internet Explorer 5.5+ */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -90,8 +107,10 @@ pre {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 :root,
@@ -135,4 +154,8 @@ pre {
   to {
     mask-size: 350vmax;
   }
+}
+
+hr {
+  @apply bg-red-500 text-red-600 border-t-[1px] max-w-48 w-full mx-auto
 }
