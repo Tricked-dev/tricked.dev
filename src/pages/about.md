@@ -2,7 +2,7 @@
 layout: "../layouts/BlogPost.astro"
 title: "About Me"
 description: "Information about me!"
-updatedDate: "Jan 4 2026"
+updatedDate: "April 5 2026"
 heroImage: "/assets/4122343113_A white husky looking out of a bedroom window, atm_xl-beta-v2-2-2.png"
 about: true
 ---
@@ -19,11 +19,11 @@ Hi there! My name is Tricked and I am a software developer from the Netherlands 
 
 Since then, I have gained experience in building a wide range of applications, including websites, user applications, and backends. I am currently focusing on using Rust & Typescript using svelte for frontend for most of my projects, Open to use other languages when best suited or required for a contribution.
 
-I am currently working 4 days per week at a C# & Azure Company, UPDATE December 2025: we are now pivoting to databricks & datawarehouses so i guess im a python dev now although most work is in requirements and shit.
+I am currently working 4 days per week at on C#, Azure and some databricks & datawarehouses.
 
 ### Other interests
 
-Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer do some soldering sometimes, create custom 3d designs using Fusion360, hack around with a flipper zero and play automation games like Factorio and modded Minecraft (GTNH lol). Oh and i also recently got a Meshtastic device too bad theres not much activity around my area keeping my node online and hoping for the best in the near future though
+Although i primarily do programming i do enjoy cosplaying as a maker i own a 3d printer (bambulab a1) do some soldering sometimes, create custom 3d designs using Fusion360 (planning to move to freecad as my education benefits expired), hack around with a flipper zero and play automation games like Factorio and modded Minecraft (GTNH lol). Oh and i also recently got a Meshtastic device too bad theres not much activity around my area keeping my node online and hoping for the best in the near future though
 
 Around every christmas i also do a modded Terraria Calamity playthrough with a couple other friends
 
@@ -38,9 +38,12 @@ Other interest of-course include Anime and Manhwa. shows i recently watched and 
 - Eminence in shadow
 - Bocchie The Rock
 - A certain scientific railgun
+- 「Oshi no ko」
 - Apothocary diaries
+- You and i are polar opposites
 - And of-course the entire EVA franchise !!
 
+i am actively keeping a watch on new releases and watching them weekly
 
 Manhwa list these are all very popular in the Manhwa/Webtoon community but might peak your interest if you havent given them a shot they are free to read almost everywhere.
 - The Greatest estate developer
@@ -48,7 +51,9 @@ Manhwa list these are all very popular in the Manhwa/Webtoon community but might
 - Omniscient reader
 - SSS-Class revival hunter
 
-Currently also learning 日本 as you can probably notice from my latest blog post at the time maybe i'll watch some unique stuff after i get a hand on it
+I dont actively seek out / read new manhwa but do keep up with these
+
+Currently also learning 日本語 at the time of writing i have about 500 words done in kaishi 1.5k but finding motivation to do more is kinda hard at the moment so i am just maintaining it for now.
 
 #### Selfhosting
 
@@ -58,12 +63,27 @@ Through this i learned everything from networking to linux tooling & containers
 
 I recently switched my entire homelab from fedora to NixOS and have been having too much fun trying to do everything in the nix language and getting everything uniform it all working great though now!
 
+I try to manage as much as possible via nix files for example kanidm is fully managed by nix config like the secrets etc
+
+### Most used desktop tools
+in no particular order
+
+- Konsole
+- VScode
+- KDE
+- Atuin
+- ZSH
+- altdrag
+- Claude Code / Opencode
+- nix-shell
+
+
 ### Long terms goals
 
-- Get drivers license
-- Move to Amsterdam
-- Get rich
-- Own ram
+- Get drivers license (Currently doing weekly lessons)
+- Move to Amsterdam (fuck you housing rules)
+- Get rich (fuck you trump)
+- Own ram (fuck you nvidia)
 
 ---
 
