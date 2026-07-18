@@ -1,4 +1,3 @@
-import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import starlight from "@astrojs/starlight";
@@ -7,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
 import { unified } from "@astrojs/markdown-remark";
 import expressiveCode from "astro-expressive-code";
-import { defineConfig, sessionDrivers } from "astro/config";
+import { defineConfig } from "astro/config";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import { cloudflareRedirect } from "vite-plugin-cloudflare-redirect";
@@ -82,13 +81,6 @@ export default defineConfig({
   ],
   experimental: {},
   output: "static",
-  session: {
-    driver: sessionDrivers.lruCache(),
-  },
-  adapter: cloudflare({
-    imageService: "passthrough",
-    prerenderEnvironment: "node",
-  }),
   markdown: {
     processor: unified({
       remarkPlugins: [
