@@ -12,7 +12,7 @@ I found the [example from hectorm](https://github.com/hectorm/docker-goaccess/tr
 
 So i modified the config to add these features
 
-```Caddyfile
+```text
 {
    admin off
    auto_https disable_redirects
@@ -48,7 +48,7 @@ Although i couldn't get that method to work with the logger for some reason im g
 
 After that i also wanted to get ssl certs for my domains using a letsencrypt and the cloudflare api. I did this by using https://github.com/caddy-dns/cloudflare and updated my config to use the api key
 
-```caddyfile
+```text
 {
    log all { ... old stuff}
 

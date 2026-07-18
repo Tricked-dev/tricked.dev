@@ -2,8 +2,14 @@
 import Contact from "../components/contact.svelte";
 import Layout from "../layouts/Layout.astro";
 
-// Get the latest 5 blog posts
-const posts = (await Astro.glob("./blog/*.{md,mdx}"))
+type BlogPost = {
+  frontmatter: { description: string; pubDate: string; title: string };
+  url: string;
+};
+
+const posts = Object.values(
+  import.meta.glob<BlogPost>("./blog/*.{md,mdx}", { eager: true })
+)
   .sort(
     (a, b) =>
       new Date(b.frontmatter.pubDate).valueOf() -
@@ -13,19 +19,18 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
 ---
 
 <Layout>
-  <h1>👋 Hi!, I'm Tricked</h1><p>
-    Welcome to my blog site! My name is Tricked and I am a software developer
-    from the Netherlands.
-  </p>
-  <p>
-    Here, you can find my latest blog posts where I share updates on my work,
-    discuss the latest industry trends, and share tips and insights on
-    programming and technology. Thank you for visiting!
-  </p>
-  <p>
-    See my <a href="/about">About me page</a> for more info about <bold>me</bold
-    >
-  </p>
+  <div class="intro-copy">
+    <h1><span class="section-label" lang="ja">個人開発ログ</span>Hi, I’m Tricked.</h1>
+    <p>
+      I’m a software developer from the Netherlands. This is where I document
+      what I build, the problems I run into, and the occasional useful thing I
+      learn along the way.
+    </p>
+    <p>
+      You’ll find notes on programming, infrastructure, and technology here.
+      For the shorter version, visit the <a href="/about">about page</a>.
+    </p>
+  </div>
   <!-- <p
     class="text-sm text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary"
   >
@@ -40,7 +45,10 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}"))
   <!-- Latest Blog Posts Section -->
   <section class="mt-12">
     <div class="flex items-center justify-between mb-6">
-      <h2 class="text-2xl font-bold">Latest Blog Posts</h2>
+      <h2 class="text-2xl font-bold">
+        <span class="section-label" lang="ja">最新記事</span>
+        Latest Blog Posts
+      </h2>
       <a href="/blog" class="link link-primary text-sm hover:underline">
         View all posts →
       </a>

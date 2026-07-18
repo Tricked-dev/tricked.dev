@@ -2,6 +2,8 @@ import { POCKETBASE_URL } from "../config";
 import PocketBase from "pocketbase";
 import rss from "@astrojs/rss";
 
+export const prerender = true;
+
 export async function GET(context: { site: string }) {
   const pb = new PocketBase(POCKETBASE_URL);
   const resultList = await pb.collection("tips").getList(1, 500, {});

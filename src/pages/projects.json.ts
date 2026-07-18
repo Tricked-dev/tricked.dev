@@ -1,5 +1,7 @@
 const url = import.meta.env.DEV ? "/" : "https://tricked.dev/";
 
+export const prerender = false;
+
 const projects = [
   {
     repo: "tricked-dev/betternexus",

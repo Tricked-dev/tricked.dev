@@ -5,10 +5,11 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 ---
 
 <header class="w-full max-w-[--header-width] mx-auto">
-  <h2>
-    {SITE_TITLE}
-  </h2>
-  <nav class="w-full flex items-center gap-2 overflow-x-scroll no-scrollbar">
+  <div class="brand-row">
+    <h2>{SITE_TITLE}</h2>
+    <ThemeSwitcher />
+  </div>
+  <nav class="w-full flex items-center overflow-x-auto no-scrollbar">
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/blog">Blog</HeaderLink>
     <HeaderLink href="/about">About</HeaderLink>
@@ -16,7 +17,6 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
     <HeaderLink href="/tips">Tips</HeaderLink>
     <HeaderLink href="/github" target="_blank">GitHub</HeaderLink>
     <HeaderLink href="/hello">Contact</HeaderLink>
-    <ThemeSwitcher />
   </nav>
 </header>
 

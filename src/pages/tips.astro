@@ -4,6 +4,8 @@ import PocketBase from "pocketbase";
 import Layout from "../layouts/Layout.astro";
 import { POCKETBASE_URL } from "../config";
 
+export const prerender = true;
+
 const pb = new PocketBase(POCKETBASE_URL);
 const resultList = await pb.collection("tips").getList(1, 500, {});
 ---

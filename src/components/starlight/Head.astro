@@ -1,12 +1,7 @@
 ---
 import BaseHead from "../BaseHead.astro";
 
-const {
-  entry: {
-    data: { title, image },
-    body,
-  },
-} = Astro.props;
+const { title, description, image } = Astro.locals.starlightRoute.entry.data;
 ---
 
 <style>
@@ -17,9 +12,7 @@ const {
 
 <BaseHead
   title={title}
-  description={body.trim().split("\n")[0].trim() +
-    " " +
-    (body.trim().split("\n")?.[1]?.trim() ?? "")}
+  description={description ?? title}
   image={image}
 />
 

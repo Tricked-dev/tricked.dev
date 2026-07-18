@@ -43,7 +43,7 @@
     style="min-height: min(60rem, 60vh); min-width: min(60rem, 60vw);"></canvas>
 </div>
 
-<script type="module">
+<script type="module" is:inline>
   export function _(id) {
     return document.getElementById(id);
   }
@@ -184,7 +184,7 @@
 
     const bytes = [];
     for (let i = 0; i < bits.length; i += 8) {
-      bytes.push(parseInt(bits.substr(i, 8), 2));
+      bytes.push(parseInt(bits.slice(i, i + 8), 2));
     }
 
     const fileSize = 14 + 40 + 8 + bytes.length;

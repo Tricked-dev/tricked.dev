@@ -11,29 +11,17 @@ export interface Props {
     updatedDate?: string;
     heroImage?: string;
     about: boolean;
-    wide: boolean;
   };
 }
 
 const {
   file,
-  content: { title, description, pubDate, updatedDate, heroImage, about, wide },
+  content: { title, description, pubDate, updatedDate, heroImage, about },
 } = Astro.props;
 ---
 
 <Layout title={title} description={description} image={heroImage}>
-  <style>
-    .title {
-      font-size: 2em;
-      margin: 0.25em 0 0;
-    }
-    hr {
-      border-top: 1px solid #ddd;
-      margin: 1rem 0;
-    }
-  </style>
-
-  <article>
+  <article class="prose">
     {
       heroImage && (
         <a href={heroImage} target="_blank" rel="noopener noreferrer" class="hero-image-link block">
@@ -47,17 +35,14 @@ const {
         </a>
       )
     }
-    <h1 class="title">{title}</h1>
-    {pubDate && <time>{pubDate}</time>}
-    {
-      updatedDate && (
-        <div>
-          Last updated on <time>{updatedDate}</time>
-        </div>
-      )
-    }
-    <br/>
-    {description}
+    <header class="article-head">
+      <h1>{title}</h1>
+      <div class="article-meta">
+        {pubDate && <time datetime={pubDate}>Published {pubDate}</time>}
+        {updatedDate && <time datetime={updatedDate}>Updated {updatedDate}</time>}
+      </div>
+    </header>
+    <p class="article-description">{description}</p>
     <slot />
   </article>
   {
@@ -78,6 +63,7 @@ const {
         data-loading="lazy"
         crossorigin="anonymous"
         async
+        is:inline
         id="giscus"
       />
       <a href={`https://github.com/Tricked-dev/tricked.dev/tree/master/src/pages/blog/${file
@@ -85,15 +71,6 @@ const {
       .at(-1)}`}>View on Github</a>
     )
   }
-  {wide &&
-    <style is:global>
-      body {
-        --width: 80rem;
-      }
-    </style>
-  }
-
-
   <script>
     // Track if giscus is ready
     let giscusReady = false;
@@ -105,7 +82,7 @@ const {
       const theme = document.documentElement.getAttribute('data-theme') || 'dark';
       const giscusTheme = theme === 'light' ? 'light' : 'dark';
 
-      const iframe = document.querySelector('iframe.giscus-frame');
+      const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
       if (!iframe || !iframe.contentWindow) return;
 
       iframe.contentWindow.postMessage(
@@ -115,7 +92,7 @@ const {
     }
 
     // Listen for messages from giscus
-    function handleGiscusMessage(event) {
+    function handleGiscusMessage(event: MessageEvent) {
       if (event.origin !== 'https://giscus.app') return;
       if (!(typeof event.data === 'object' && event.data.giscus)) return;
 
@@ -129,13 +106,17 @@ const {
     // Listen for theme changes by watching the data-theme attribute on <html>
     const themeObserver = new MutationObserver(() => {
       syncGiscusTheme();
-      let themeMap = {
+      const themeMap = {
         dark: "ayu-dark",
         black: "aurora-x",
         light: "catppuccin-latte",
       };
 
-      document.documentElement.dataset.extheme = themeMap[document.documentElement.dataset.theme];
+      const selectedTheme = document.documentElement.dataset.theme;
+      document.documentElement.dataset.extheme =
+        selectedTheme && selectedTheme in themeMap
+          ? themeMap[selectedTheme as keyof typeof themeMap]
+          : themeMap.dark;
     });
 
     themeObserver.observe(document.documentElement, {
@@ -146,15 +127,12 @@ const {
     // Image enlargement functionality
     function setupImageModal() {
       // Handle both hero image and all images in article content
-      const clickableImages = document.querySelectorAll('.hero-image-link, article img');
+      const clickableImages = document.querySelectorAll<HTMLElement>('.hero-image-link, article img');
 
       clickableImages.forEach(imageElement => {
-        // For hero image link, use the link; for article images, use the image itself
-        const targetElement = imageElement.classList.contains('hero-image-link') ? imageElement : imageElement;
+        imageElement.style.cursor = 'pointer';
 
-        targetElement.style.cursor = 'pointer';
-
-        targetElement.addEventListener('click', (e) => {
+        imageElement.addEventListener('click', (e) => {
           e.preventDefault();
           if(document.querySelector(".image-modal")) return;
 
@@ -191,11 +169,17 @@ const {
 
         modal.addEventListener('click', (e) => {
           // Close if clicking on the modal itself, overlay, or content area, but not the image link
-          if (e.target === modal || e.target.classList.contains('image-modal-overlay') || e.target.classList.contains('image-modal-content')) {
+          const target = e.target;
+          if (
+            target === modal ||
+            (target instanceof Element &&
+              (target.classList.contains('image-modal-overlay') ||
+                target.classList.contains('image-modal-content')))
+          ) {
             closeModal();
           }
         });
-        modal.querySelector('.image-modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.image-modal-close')?.addEventListener('click', closeModal);
 
         document.addEventListener('keydown', function escHandler(e) {
           if (e.key === 'Escape') {

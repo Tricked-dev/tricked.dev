@@ -36,10 +36,10 @@ Favorite "maker" projects i made:
 
 Other interest of-course include Anime and Manhwa. shows i recently watched and enjoyed and are not Frieren, JJK, and rezero lol:
 - Eminence in shadow
-- Bocchie The Rock
+- Lycoris Recoil
 - A certain scientific railgun
 - 「Oshi no ko」
-- Apothocary diaries
+- 86 EIGHTY-SIX
 - You and i are polar opposites
 - And of-course the entire EVA franchise !!
 
@@ -74,15 +74,15 @@ in no particular order
 - Atuin
 - ZSH
 - altdrag
-- Claude Code / Opencode
+- Claude Code / Codex
 - nix-shell
 
 
 ### Long terms goals
 
 - Get drivers license (Currently doing weekly lessons)
-- Move to Amsterdam (fuck you housing rules)
-- Get rich (fuck you trump)
+- Move to Amsterdam (fuck you housing wait times)
+- Get rich (fuck you dutch taxes)
 - Own ram (fuck you nvidia)
 
 ---
