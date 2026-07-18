@@ -1,0 +1,42 @@
+<script>
+  import { bind } from "cuelume";
+
+  const interactionSounds = [
+    {
+      selector: "a[href]",
+      attributes: { "data-cuelume-hover": "tick" },
+    },
+    {
+      selector: "button, [role='button']",
+      attributes: {
+        "data-cuelume-press": "press",
+        "data-cuelume-release": "release",
+      },
+    },
+    {
+      selector: "select, input[type='checkbox'], input[type='radio'], summary",
+      attributes: { "data-cuelume-toggle": "toggle" },
+    },
+  ] as const;
+
+  function configureElement(element: Element) {
+    if (element.closest("[data-cuelume='off']")) return;
+
+    for (const { selector, attributes } of interactionSounds) {
+      if (!element.matches(selector)) continue;
+
+      for (const [name, value] of Object.entries(attributes)) {
+        if (!element.hasAttribute(name)) element.setAttribute(name, value);
+      }
+    }
+  }
+
+  function configureTree(root: ParentNode) {
+    if (root instanceof Element) configureElement(root);
+    root.querySelectorAll(interactionSounds.map(({ selector }) => selector).join(","))
+      .forEach(configureElement);
+  }
+
+  bind();
+  document.addEventListener("astro:page-load", () => configureTree(document));
+</script>

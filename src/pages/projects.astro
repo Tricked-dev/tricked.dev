@@ -1,68 +1,200 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { getData } from "./projects.json";
-const projects = await getData();
+
+const projects = [
+  {
+    name: "SolidVerdant",
+    description:
+      "A native Android companion for Solidtime. Start and manage timers, review time entries, and see statistics without reaching for the web app.",
+    repo: "https://github.com/Tricked-dev/SolidVerdant",
+    image: "/assets/solidverdant-showcase.png",
+    imageAlt:
+      "SolidVerdant timer, calendar, and statistics screens shown side by side",
+    language: "Kotlin",
+    tags: ["Android", "Jetpack Compose", "Solidtime"],
+  },
+  {
+    name: "Lowest Bins",
+    description:
+      "A fast Hypixel SkyBlock pricing API written in Rust and built to handle a lot of daily traffic.",
+    repo: "https://github.com/Tricked-dev/lowestbins",
+    website: "https://lb.tricked.pro",
+    image:
+      "/assets/1910807468_A image of a hyper efficient trading section of a _xl-beta-v2-2-2.png",
+    imageAlt: "A busy fantasy marketplace representing the Lowest Bins API",
+    language: "Rust",
+    tags: ["API", "Hypixel", "Market data"],
+  },
+  {
+    name: "Kanidm OAuth2 Manager",
+    description:
+      "A web UI for managing Kanidm OAuth2 applications, secrets, images, and redirect URLs in one place.",
+    repo: "https://github.com/Tricked-dev/kanidm-oauth2-manager",
+    language: "Svelte",
+    tags: ["Kanidm", "OAuth2", "Admin tools"],
+  },
+  {
+    name: "vwmetrics",
+    description:
+      "A small Prometheus exporter that turns a Vaultwarden database into useful metrics.",
+    repo: "https://github.com/Tricked-dev/vwmetrics",
+    language: "Rust",
+    tags: ["Prometheus", "Vaultwarden", "Observability"],
+  },
+];
 ---
 
-<Layout>
+<Layout
+  title="Projects"
+  description="A selection of software projects built by Tricked."
+>
   <style is:global>
     body {
-      --width: 80rem;
+      --width: 64rem;
     }
   </style>
 
-  <section>
-    <h2>Showcase</h2>
-    <div>
-      {
-        projects
-          .filter((x) => x.bits & 0b100)
-          .map((project) => {
-            return (
-              <div>
-                <div class="bg-base-300 my-2 text-center no-underline border-b-0 ring-0">
-                  <a
-                    href={project.website ?? project.homepageUrl ?? project.url}
-                  >
-                    <h3 class="mb-0 font-semibold text-lg">{project.name}</h3>
-                  </a>
-                  <p class="m-0">{project.description}</p>
-                </div>
-                <a href={project.website ?? project.homepageUrl ?? project.url}>
-                  <img
-                    class="slide object-cover max-h-72 w-full"
-                    src={project.image}
-                  />
-                </a>
-              </div>
-            );
-          })
-      }
+  <header class="mb-10 max-w-2xl">
+    <h1 class="mb-3 text-4xl font-bold">Projects</h1>
+    <p class="text-base-content/70">
+      Things I have built and still care about. This is a short selection; the
+      experiments and abandoned ideas are all still on
+      <a
+        class="link link-primary"
+        href="https://github.com/Tricked-dev"
+        target="_blank"
+        rel="noreferrer">GitHub</a
+      >.
+    </p>
+  </header>
+
+  <section aria-labelledby="aethor-title">
+    <div class="mb-4 flex items-center gap-3">
+      <h2 id="aethor-title" class="m-0 text-2xl font-bold">Aethor</h2>
     </div>
+
+    <article class="card overflow-hidden bg-base-200 shadow-xl">
+      <figure class="border-b border-base-content/10 bg-[#0b1020]">
+        <a href="https://aethor.xyz" target="_blank" rel="noreferrer">
+          <img
+            class="w-full object-cover object-top transition-opacity hover:opacity-90"
+            src="/assets/aethor-homepage.png"
+            alt="The Aethor homepage showing its Discord suggestion workflow"
+            width="1440"
+            height="1000"
+            loading="eager"
+          />
+        </a>
+      </figure>
+      <div class="card-body gap-4 p-5 sm:p-7">
+        <div>
+          <h3 class="card-title text-2xl">
+            Turn community feedback into decisions
+          </h3>
+          <p class="mt-2 max-w-3xl text-base-content/70">
+            Aethor is a Discord suggestion management bot I have been building
+            for years. It helps communities collect, vote on, moderate, search,
+            and resolve suggestions, and is now used in more than 800 servers.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="badge badge-outline">TypeScript</span>
+          <span class="badge badge-outline">Discord</span>
+          <span class="badge badge-outline">SvelteKit</span>
+          <span class="badge badge-outline">Gel</span>
+        </div>
+
+        <div class="card-actions justify-start">
+          <a
+            class="btn btn-primary"
+            href="https://aethor.xyz"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visit Aethor
+          </a>
+          <a
+            class="btn btn-ghost"
+            href="https://aethor.xyz/docs"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the docs
+          </a>
+        </div>
+      </div>
+    </article>
   </section>
-  <div>
-    <h2>Noteworthy Projects:</h2>
-    <section class="grid grid-cols-3">
+
+  <section class="mt-12" aria-labelledby="other-projects-title">
+    <h2 id="other-projects-title" class="mb-5 text-2xl font-bold">
+      Other projects
+    </h2>
+
+    <div class="grid items-stretch gap-5 md:grid-cols-2">
       {
         projects.map((project) => (
-          <article>
-            <h2>
-              <a href={project.website ?? project.homepageUrl ?? project.url}>
-                {project.name}
-              </a>
-              {project.stargazerCount != undefined &&
-                project.stargazerCount != 0 &&
-                ` (${project.stargazerCount} stars)`}
-            </h2>
-            <span>
-              {project.topics?.slice(0, 3).map((x: string) => (
-                <span class="mx-1 badge badge-primary">{x}</span>
-              ))}
-            </span>
-            <p>{project.description}</p>
+          <article class="card overflow-hidden bg-base-200 shadow-lg transition-shadow hover:shadow-xl">
+            {project.image && (
+              <figure class="aspect-video border-b border-base-content/10 bg-base-300">
+                <img
+                  class="h-full w-full object-cover object-center"
+                  src={project.image}
+                  alt={project.imageAlt}
+                  loading="lazy"
+                />
+              </figure>
+            )}
+
+            <div class="card-body p-5">
+              <h3 class="card-title">{project.name}</h3>
+              <p class="text-sm text-base-content/70">{project.description}</p>
+
+              <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                <span class="badge badge-primary badge-outline">
+                  {project.language}
+                </span>
+                {project.tags.map((tag) => (
+                  <span class="badge badge-ghost">{tag}</span>
+                ))}
+              </div>
+
+              <div class="card-actions mt-3 justify-start">
+                {project.website && (
+                  <a
+                    class="btn btn-primary btn-sm"
+                    href={project.website}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Visit project
+                  </a>
+                )}
+                <a
+                  class="btn btn-ghost btn-sm"
+                  href={project.repo}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View source →
+                </a>
+              </div>
+            </div>
           </article>
         ))
       }
-    </section>
+    </div>
+  </section>
+
+  <div class="mt-10 text-center">
+    <a
+      class="btn btn-outline"
+      href="https://github.com/Tricked-dev?tab=repositories"
+      target="_blank"
+      rel="noreferrer"
+    >
+      See all repositories on GitHub
+    </a>
   </div>
 </Layout>

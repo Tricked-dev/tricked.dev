@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import Cuelume from "./Cuelume.astro";
 import "../styles/global.css";
 import { SITE_TITLE } from "../config";
 
@@ -49,6 +50,8 @@ if (!title.includes(SITE_TITLE)) {
 <link rel="canonical" href={canonicalURL.href} />
 
 <link rel="preconnect" href="https://tricked.dev" crossorigin />
+
+<Cuelume />
 
 <script is:inline>
 const syncTheme = () => {

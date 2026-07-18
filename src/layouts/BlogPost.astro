@@ -16,7 +16,6 @@ export interface Props {
 }
 
 const {
-  url,
   file,
   content: { title, description, pubDate, updatedDate, heroImage, about, wide },
 } = Astro.props;
@@ -39,7 +38,6 @@ const {
       heroImage && (
         <a href={heroImage} target="_blank" rel="noopener noreferrer" class="hero-image-link block">
           <img
-            transition:name={url}
             class="max-h-[25rem] mx-auto object-scale-down cursor-pointer hover:opacity-80 transition-opacity"
             width={720}
             height={360}
@@ -49,7 +47,7 @@ const {
         </a>
       )
     }
-    <h1 class="title" transition:name={heroImage ? "" : url}>{title}</h1>
+    <h1 class="title">{title}</h1>
     {pubDate && <time>{pubDate}</time>}
     {
       updatedDate && (

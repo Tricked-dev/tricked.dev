@@ -30,7 +30,7 @@ const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
     <ul>
       {
         posts.map((post) => (
-          <li transition:persist={post.url} transition:name={post.url}>
+          <li>
             <time datetime={post.frontmatter.pubDate}>
               {new Date(post.frontmatter.pubDate).toLocaleDateString("en-us", {
                 year: "numeric",
